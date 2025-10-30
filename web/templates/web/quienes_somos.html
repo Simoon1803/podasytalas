@@ -1,0 +1,298 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Quiénes Somos — Podas y Talas Isaías{% endblock %}
+
+{% block content %}
+
+<!-- 🌿 HERO PRINCIPAL -->
+<section class="hero-quienes d-flex align-items-center justify-content-center text-center text-white">
+  <div class="overlay"></div>
+  <div class="container position-relative">
+    <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">
+      <i class="bi bi-people-fill"></i> Quiénes Somos
+    </h1>
+    <p class="lead animate__animated animate__fadeInUp text-light">
+      Más que una empresa, somos un equipo comprometido con el cuidado, la seguridad y la belleza de tus áreas verdes.
+    </p>
+    <div class="divider mx-auto mt-4"></div>
+  </div>
+</section>
+
+<!-- 🌳 HISTORIA / DESCRIPCIÓN -->
+<section class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    {% if about %}
+    <div class="row justify-content-center align-items-center g-5">
+      <div class="col-lg-10">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold text-success text-capitalize">{{ about.title }}</h2>
+        </div>
+        <p class="lead text-muted text-center" style="max-width: 900px; margin: 0 auto; line-height: 1.9;">
+          {{ about.content }}
+        </p>
+      </div>
+    </div>
+    {% else %}
+    <div class="text-center">
+      <h2 class="fw-bold text-success mb-3">Podas y Talas Isaías</h2>
+      <p class="text-muted mx-auto" style="max-width: 850px;">
+        Somos una empresa chilena con más de 10 años de experiencia en el cuidado de árboles y mantenimiento de áreas verdes. 
+        Nos destacamos por nuestra seguridad, compromiso y atención personalizada.
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- 🌱 MISIÓN / VISIÓN / VALORES -->
+<section class="py-5 bg-gradient-quienes text-white text-center">
+  <div class="container" data-aos="zoom-in">
+    <div class="row justify-content-center g-4">
+      
+      <div class="col-md-4">
+        <div class="card glass-card border-0 shadow-lg rounded-4 p-4 h-100 text-white">
+          <div class="icon-circle mb-3">
+            <i class="bi bi-bullseye"></i>
+          </div>
+          <h4 class="fw-bold mb-3">Nuestra Misión</h4>
+          <p class="small">
+            Brindar servicios de calidad en podas, talas y mantenimiento de áreas verdes, cuidando cada espacio natural con
+            responsabilidad y pasión por la naturaleza.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card glass-card border-0 shadow-lg rounded-4 p-4 h-100 text-white">
+          <div class="icon-circle mb-3">
+            <i class="bi bi-eye-fill"></i>
+          </div>
+          <h4 class="fw-bold mb-3">Nuestra Visión</h4>
+          <p class="small">
+            Ser líderes en servicios de arboricultura, reconocidos por la excelencia, el compromiso ambiental y la confianza
+            de nuestros clientes.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card glass-card border-0 shadow-lg rounded-4 p-4 h-100 text-white">
+          <div class="icon-circle mb-3">
+            <i class="bi bi-heart-fill"></i>
+          </div>
+          <h4 class="fw-bold mb-3">Nuestros Valores</h4>
+          <p class="small">
+            Respeto por la naturaleza, seguridad en el trabajo, profesionalismo, trabajo en equipo y pasión por lo que hacemos.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 🏆 LOGROS Y CERTIFICADOS -->
+<section class="py-5 bg-light text-center">
+  <div class="container" data-aos="fade-up">
+    <h2 class="fw-bold text-success mb-5"><i class="bi bi-award-fill"></i> Nuestros Logros</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-3 col-6">
+        <div class="counter-box shadow-sm p-4 rounded-4 bg-white">
+          <i class="bi bi-tree display-5 text-success"></i>
+          <h3 class="fw-bold mt-3 text-success">+500</h3>
+          <p class="text-muted">Árboles podados con seguridad</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="counter-box shadow-sm p-4 rounded-4 bg-white">
+          <i class="bi bi-people-fill display-5 text-success"></i>
+          <h3 class="fw-bold mt-3 text-success">+200</h3>
+          <p class="text-muted">Clientes satisfechos</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="counter-box shadow-sm p-4 rounded-4 bg-white">
+          <i class="bi bi-shield-check display-5 text-success"></i>
+          <h3 class="fw-bold mt-3 text-success">+10</h3>
+          <p class="text-muted">Años de experiencia</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="counter-box shadow-sm p-4 rounded-4 bg-white">
+          <i class="bi bi-award display-5 text-success"></i>
+          <h3 class="fw-bold mt-3 text-success">+8</h3>
+          <p class="text-muted">Certificaciones profesionales</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 👷 EQUIPO DE TRABAJO -->
+<section class="py-5 bg-white">
+  <div class="container text-center" data-aos="fade-up">
+    <h2 class="fw-bold text-success mb-5"><i class="bi bi-people"></i> Nuestro Equipo</h2>
+    {% if about and about.team_members.all %}
+    <div class="row g-4 justify-content-center">
+      {% for member in about.team_members.all %}
+      <div class="col-md-4 col-sm-6">
+        <div class="team-card shadow-lg rounded-4 overflow-hidden">
+          <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid team-photo">
+          <div class="p-3 bg-white">
+            <h5 class="fw-bold text-dark mb-1">{{ member.name }}</h5>
+            <p class="text-muted mb-2">{{ member.role }}</p>
+            <p class="small text-secondary">{{ member.description|default:"Profesional comprometido con la excelencia y la seguridad." }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-muted">Nuestro equipo está conformado por profesionales certificados y apasionados por su trabajo.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- 🖼️ GALERÍA -->
+<section class="py-5 bg-light">
+  <div class="container text-center" data-aos="fade-up">
+    <h2 class="fw-bold text-success mb-5"><i class="bi bi-images"></i> Galería de Nuestros Trabajos</h2>
+    {% if about and about.images.all %}
+    <div class="row g-4 justify-content-center">
+      {% for img in about.images.all %}
+      <div class="col-md-4 col-sm-6">
+        <div class="gallery-card rounded-4 overflow-hidden">
+          <img src="{{ img.image.url }}" alt="{{ img.caption }}" class="img-fluid gallery-img">
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-muted">Pronto compartiremos imágenes de nuestros proyectos más destacados.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- 🌾 CIERRE -->
+<section class="text-center py-5 bg-success text-white position-relative">
+  <div class="container" data-aos="zoom-in">
+    <h3 class="fw-bold mb-3">Más de una década cuidando tus áreas verdes con pasión y seguridad</h3>
+    <p class="mb-0">🌳 Podas y Talas Isaías — Comprometidos con tu entorno natural 🌿</p>
+  </div>
+</section>
+
+<!-- 🌈 ESTILOS -->
+<style>
+.hero-quienes {
+  background: url("{% static 'img/quienessomos.jpg' %}") center/cover no-repeat;
+  min-height: 70vh;
+  position: relative;
+}
+.hero-quienes .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 70, 35, 0.6);
+}
+.hero-quienes .container {
+  z-index: 2;
+  position: relative;
+}
+.hero-quienes h1 {
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.hero-quienes p {
+  color: #f8f9fa;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.divider {
+  width: 80px;
+  height: 4px;
+  background: #ffc107;
+  border-radius: 2px;
+}
+
+/* Fondo degradado natural */
+.bg-gradient-quienes {
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4caf50 100%);
+}
+
+/* Tarjetas */
+.glass-card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-8px);
+}
+
+/* Logros */
+.counter-box {
+  transition: all 0.3s ease;
+}
+.counter-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.counter-box h3 {
+  font-size: 2rem;
+}
+
+/* Iconos */
+.icon-circle {
+  background: rgba(255, 255, 255, 0.2);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #ffc107;
+  transition: all 0.3s ease;
+}
+.icon-circle:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.1);
+}
+
+/* Equipo */
+.team-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.team-photo {
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Galería */
+.gallery-img {
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+  transition: all 0.4s ease;
+}
+.gallery-img:hover {
+  transform: scale(1.07);
+  filter: brightness(1.1);
+}
+</style>
+
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>
+
+{% endblock %}

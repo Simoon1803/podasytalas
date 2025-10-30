@@ -1,0 +1,30 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pdb
+
+# Django
+/staticfiles/
+media/
+*.log
+
+# Virtual env
+.venv/
+env/
+venv/
+
+# VSCode
+.vscode/
+
+# Environment files
+*.env
+.env
+.env.production
+.env.development
+.env.local
+
+# Database dump
+*.sql
+git add .

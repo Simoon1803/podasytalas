@@ -1,0 +1,49 @@
+{% extends "base/base_admin.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="form-container shadow">
+  <div class="text-center mb-4">
+    <img src="{% static 'img/logo.png' %}" width="90" class="mb-3">
+    <h2 class="fw-bold text-danger"><i class="bi bi-camera-reels"></i> Nuevo Video</h2>
+  </div>
+
+  <form id="videoForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Título del video:</label>
+      {{ form.title }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Archivo de video (MP4):</label>
+      {{ form.video_file }}
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <a href="{% url 'dashboard:video_list' %}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Volver
+      </a>
+      <button type="submit" class="btn btn-success">
+        <i class="bi bi-check2-square"></i> Guardar
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+document.getElementById("videoForm").addEventListener("submit", function(e){
+  Swal.fire({
+    icon: "info",
+    title: "Subiendo video...",
+    text: "Por favor espera mientras se carga.",
+    showConfirmButton: false,
+    allowOutsideClick: false,
+    timerProgressBar: true,
+    didOpen: () => Swal.showLoading()
+  });
+});
+</script>
+{% endblock %}

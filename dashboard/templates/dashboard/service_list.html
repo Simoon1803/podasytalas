@@ -1,0 +1,59 @@
+{% extends "base/base_admin.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-success"><i class="bi bi-tools"></i> Servicios</h2>
+    <a href="{% url 'dashboard:service_add' %}" class="btn btn-success">
+      <i class="bi bi-plus-circle"></i> Nuevo servicio
+    </a>
+  </div>
+
+  <div class="row g-4">
+    {% for service in services %}
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+          <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ service.title }}</h5>
+            <p class="card-text text-muted">{{ service.description|truncatechars:100 }}</p>
+            <div class="d-flex justify-content-between mt-3">
+              <a href="{% url 'dashboard:service_edit' service.id %}" class="btn btn-outline-success btn-sm">
+                <i class="bi bi-pencil"></i> Editar
+              </a>
+              <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ service.id }}')">
+                <i class="bi bi-trash"></i> Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No hay servicios agregados aún.</p>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+function confirmDelete(id) {
+  Swal.fire({
+    title: "¿Eliminar servicio?",
+    text: "Esta acción no se puede deshacer.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#2e7d32",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = `/dashboard/services/delete/${id}/`;
+    }
+  });
+}
+</script>
+{% endblock %}

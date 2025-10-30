@@ -1,0 +1,46 @@
+{% extends "base/base_admin.html" %}
+{% block title %}Inicio — Panel Admin{% endblock %}
+{% block page_title %}Bienvenido al Panel Administrativo{% endblock %}
+{% block content %}
+
+<h2 class="fw-bold mb-4 text-success"><i class="bi bi-speedometer2"></i> Panel principal</h2>
+
+<div class="row g-4">
+  <div class="col-md-4">
+    <a href="{% url 'dashboard:service_list' %}" class="card card-stat text-center shadow-sm text-decoration-none">
+      <div class="card-body">
+        <i class="bi bi-scissors text-success display-5"></i>
+        <h5 class="fw-bold mt-2">{{ total_servicios }}</h5>
+        <p class="text-muted">Servicios registrados</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="{% url 'dashboard:gallery_list' %}" class="card card-stat text-center shadow-sm text-decoration-none">
+      <div class="card-body">
+        <i class="bi bi-images text-primary display-5"></i>
+        <h5 class="fw-bold mt-2">{{ total_imagenes }}</h5>
+        <p class="text-muted">Imágenes en galería</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <a href="{% url 'dashboard:video_list' %}" class="card card-stat text-center shadow-sm text-decoration-none">
+      <div class="card-body">
+        <i class="bi bi-camera-video text-danger display-5"></i>
+        <h5 class="fw-bold mt-2">{{ total_videos }}</h5>
+        <p class="text-muted">Videos subidos</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="mt-5">
+  <div class="alert alert-success shadow-sm text-center" role="alert">
+    <i class="bi bi-person-check"></i> Estás autenticado como <strong>{{ request.user.username }}</strong>.
+  </div>
+</div>
+
+{% endblock %}

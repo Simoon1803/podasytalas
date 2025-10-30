@@ -1,0 +1,38 @@
+{% extends "base/base_admin.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="form-container shadow">
+  <div class="text-center mb-4">
+    <img src="{% static 'img/logo.png' %}" width="100" class="mb-3">
+    <h2 class="fw-bold text-success"><i class="bi bi-tools"></i> Nuevo Servicio</h2>
+  </div>
+
+  <form id="serviceForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="d-flex justify-content-between mt-4">
+      <a href="{% url 'dashboard:service_list' %}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Volver
+      </a>
+      <button type="submit" class="btn btn-success">
+        <i class="bi bi-check2-square"></i> Guardar
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+document.getElementById("serviceForm").addEventListener("submit", function(e){
+  Swal.fire({
+    icon: "info",
+    title: "Guardando servicio...",
+    showConfirmButton: false,
+    timer: 1500
+  });
+});
+</script>
+{% endblock %}

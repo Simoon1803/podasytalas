@@ -1,0 +1,9 @@
+/* Redes sociales footer */
+.social-icon {
+  transition: 0.3s;
+}
+
+.social-icon:hover {
+  color: #28a745 !important;
+  transform: scale(1.2);
+}

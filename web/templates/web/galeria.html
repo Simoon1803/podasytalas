@@ -1,0 +1,155 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Galería — Podas y Talas Isaías{% endblock %}
+
+{% block content %}
+
+<!-- 🌿 HERO -->
+<section class="hero-galeria d-flex align-items-center justify-content-center text-center text-white">
+  <div class="overlay"></div>
+  <div class="container position-relative">
+    <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">
+      <i class="bi bi-collection-play-fill"></i> Galería de Trabajos
+    </h1>
+    <p class="lead animate__animated animate__fadeInUp text-light">
+      Capturamos la dedicación, seguridad y experiencia que nos representan.
+    </p>
+    <div class="divider mx-auto mt-4"></div>
+  </div>
+</section>
+
+<!-- 🖼️ GALERÍA MIXTA -->
+<section class="py-5 bg-light">
+  <div class="container" data-aos="fade-up">
+    <h2 class="fw-bold text-success text-center mb-5">
+      <i class="bi bi-camera-reels"></i> Nuestros Trabajos en Acción
+    </h2>
+
+    {% if combined %}
+    <div class="gallery-grid">
+      {% for item in combined %}
+        <div class="gallery-item">
+          {% if item.type == "image" %}
+            <img src="{{ item.file.image.url }}" alt="{{ item.file.title }}" class="gallery-media">
+          {% else %}
+            <video class="gallery-media" controls playsinline preload="metadata">
+              <source src="{{ item.file.video_file.url }}" type="video/mp4">
+              Tu navegador no soporta videos HTML5.
+            </video>
+          {% endif %}
+          <div class="gallery-caption">
+            <i class="{% if item.type == 'video' %}bi bi-camera-video-fill{% else %}bi bi-image-fill{% endif %} text-warning"></i>
+            <p class="mb-0">{{ item.file.title|default:"Trabajo realizado" }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <p class="text-center text-muted mt-4">🌿 Aún no se han agregado imágenes o videos a la galería.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- 🌾 CIERRE -->
+<section class="text-center py-5 bg-success text-white position-relative">
+  <div class="container" data-aos="zoom-in">
+    <h3 class="fw-bold mb-3">Más de una década cuidando tus árboles con compromiso y seguridad</h3>
+    <p class="mb-0">🌳 Podas y Talas Isaías — Excelencia y profesionalismo en cada trabajo 🌿</p>
+  </div>
+</section>
+
+<!-- 🌈 ESTILOS -->
+<style>
+.hero-galeria {
+  background: url("{% static 'img/galeria.png' %}") center/cover no-repeat;
+  min-height: 70vh;
+  position: relative;
+}
+.hero-galeria .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 70, 35, 0.6);
+}
+.hero-galeria h1, .hero-galeria p { color: #fff; }
+.divider {
+  width: 90px;
+  height: 4px;
+  background: #ffc107;
+  border-radius: 2px;
+}
+
+/* 🎥 NUEVA GALERÍA */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  background: #000;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+}
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+.gallery-media {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(0,70,35,0.9), rgba(0,90,45,0.9));
+  color: #fff;
+  padding: 6px 0; /* 🔹 más delgado */
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.9rem; /* 🔹 más pequeño */
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+.gallery-caption i {
+  font-size: 1rem;
+  color: #ffc107;
+  margin-bottom: 1px;
+}
+.gallery-item:hover .gallery-caption {
+  background: linear-gradient(90deg, rgba(0,100,50,0.95), rgba(0,130,70,0.95));
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .gallery-media {
+    max-height: 320px;
+  }
+}
+</style>
+
+<!-- AOS Animations -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1000, once: true });
+</script>
+
+{% endblock %}

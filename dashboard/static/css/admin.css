@@ -1,0 +1,111 @@
+/* ======= ADMIN PANEL GLOBAL STYLE ======= */
+
+/* Fuente global */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* ======= Tarjetas del dashboard ======= */
+.card-stat {
+  transition: all 0.25s ease;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.card-stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ======= Navbar ======= */
+.navbar {
+  background-color: #2e7d32 !important;
+}
+
+.nav-link {
+  position: relative;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+/* Efecto hover */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+}
+
+/* Efecto subrayado animado */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.25s ease-in-out;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 60%;
+}
+
+/* Íconos del menú */
+.nav-link i {
+  margin-right: 5px;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+/* Logo cuadrado — para navbar */
+.app-logo {
+  width: 50px; /* tamaño ajustado */
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  background: none;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Botón Cerrar sesión */
+.btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-light:hover {
+  background-color: #ffffff !important;
+  color: #2e7d32 !important;
+  border-color: #ffffff;
+}
+
+/* ======= Footer ======= */
+footer {
+  bottom: 0;
+  width: 100%;
+}
+
+/* ======= Estilos generales ======= */
+.btn-success {
+  background-color: #2e7d32 !important;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #256428 !important;
+}
+
+/* Sombras suaves */
+.shadow-soft {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

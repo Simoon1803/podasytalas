@@ -1,0 +1,32 @@
+{% extends 'base/base_admin.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="fw-bold text-center mb-3 text-success"><i class="bi bi-image"></i> {{ title }}</h3>
+      <form method="post" enctype="multipart/form-data" id="imageForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex justify-content-between">
+          <a href="{% url 'dashboard:about_list' %}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+          <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById("imageForm").addEventListener("submit", function() {
+  Swal.fire({
+    icon: "info",
+    title: "Subiendo imagen...",
+    showConfirmButton: false,
+    timer: 1500
+  });
+});
+</script>
+{% endblock %}
+

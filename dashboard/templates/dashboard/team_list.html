@@ -1,0 +1,40 @@
+{% extends 'base/base_admin.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="fw-bold text-center text-success mb-4"><i class="bi bi-people"></i> Equipo de Trabajo</h2>
+
+  {% if about %}
+    <div class="text-center mb-4">
+      <p class="text-muted">Esta sección pertenece a: <b>{{ about.title }}</b></p>
+    </div>
+  {% endif %}
+
+  <div class="text-end mb-3">
+    <a href="{% url 'dashboard:team_add' %}" class="btn btn-success"><i class="bi bi-person-plus"></i> Agregar Miembro</a>
+  </div>
+
+  {% if team %}
+    <div class="row g-4">
+      {% for member in team %}
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 border-0 text-center">
+          <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid rounded-top" style="height: 250px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="fw-bold">{{ member.name }}</h5>
+            <p class="text-muted mb-2">{{ member.role }}</p>
+            <div class="d-flex justify-content-center gap-2">
+              <a href="{% url 'dashboard:team_edit' member.id %}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+              <a href="{% url 'dashboard:team_delete' member.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-muted mt-5">Aún no hay miembros del equipo registrados.</p>
+  {% endif %}
+</div>
+{% endblock %}

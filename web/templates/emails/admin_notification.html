@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .header {
+      background-color: #198754;
+      padding: 15px 25px;
+      text-align: center;
+      color: white;
+    }
+    .logo {
+      width: 70px;
+      border-radius: 50%;
+      background: white;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    .content {
+      padding: 25px;
+      line-height: 1.6;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      padding: 15px;
+      border-top: 1px solid #eaeaea;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://podasytalas.cl/static/img/logo.png" alt="Logo" class="logo">
+      <h2>📋 Nueva solicitud de presupuesto</h2>
+    </div>
+
+    <div class="content">
+      <p><strong>Nombre:</strong> {{ name }}</p>
+      <p><strong>Correo:</strong> {{ email }}</p>
+      <p><strong>Teléfono:</strong> {{ phone }}</p>
+      <p><strong>Comuna:</strong> {{ comuna }}</p>
+      <p><strong>Descripción:</strong><br>{{ description }}</p>
+
+      {% if image_url %}
+      <p><strong>Imagen enviada:</strong></p>
+      <a href="{{ image_url }}">Ver imagen adjunta</a>
+      {% endif %}
+    </div>
+
+    <div class="footer">
+      © {{ year }} Podas y Talas Isaías — Sistema automático de notificaciones.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Panel Administrativo{% endblock %}</title>
+
+    <!-- Bootstrap y estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'img/logo.png' %}">
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+<!-- 🔹 NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2e7d32;">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'dashboard:home' %}">
+      <img src="{% static 'img/logo.png' %}" alt="Podas y Talas Isaías" class="app-logo me-2">
+      <strong>Podas y Talas Isaías</strong>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin" aria-controls="navbarAdmin" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarAdmin">
+      <ul class="navbar-nav mx-auto text-center">
+        <li class="nav-item mx-2"><a class="nav-link text-white fw-semibold" href="{% url 'dashboard:service_list' %}"><i class="bi bi-scissors"></i> Servicios</a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-white fw-semibold" href="{% url 'dashboard:gallery_list' %}"><i class="bi bi-images"></i> Galería</a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-white fw-semibold" href="{% url 'dashboard:video_list' %}"><i class="bi bi-camera-video"></i> Videos</a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-white fw-semibold" href="{% url 'dashboard:about_list' %}"><i class="bi bi-people"></i> Quiénes Somos</a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-white fw-semibold" href="{% url 'dashboard:team_list' %}"><i class="bi bi-person-badge"></i> Equipo</a></li>
+        <li class="nav-item mx-2"><a class="nav-link text-white fw-semibold" href="{% url 'dashboard:budget_list' %}"><i class="bi bi-envelope-paper"></i> Presupuestos</a></li>
+      </ul>
+
+      <div class="d-flex align-items-center">
+        <span class="text-white me-3 fw-semibold">
+          <i class="bi bi-person-circle"></i> {{ request.user.username }}
+        </span>
+
+        <!-- 🔴 botón de logout con confirmación -->
+        <a href="#" id="logout-btn" class="btn btn-outline-light fw-semibold">
+          <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- CONTENIDO -->
+<main class="flex-grow-1 container py-4">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+<footer class="text-center text-white py-3 mt-auto" style="background-color: #4e342e;">
+  <small>© 2025 Podas y Talas Isaías — Panel Administrativo</small>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.getElementById("logout-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    Swal.fire({
+        html: `
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+                
+                <h2 style="margin:0;color:#14532d;font-size:1.25rem;font-weight:600;">
+                    ¿Cerrar sesión?
+                </h2>
+                <p style="margin:0;color:#444;font-size:0.95rem;line-height:1.4;text-align:center;">
+                    Tu sesión actual se cerrará y deberás iniciar nuevamente.
+                </p>
+            </div>
+        `,
+        icon: "warning",
+        showCancelButton: true,
+        focusCancel: true,
+        confirmButtonText: "Sí, cerrar sesión",
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#198754",
+        cancelButtonColor: "#d33",
+        background: "#ffffff",
+        color: "#333",
+        width: 400,
+        padding: "1.5rem 1rem",
+        customClass: {
+            popup: "rounded-4 shadow-lg border-0",
+            confirmButton: "fw-bold px-4 py-2",
+            cancelButton: "fw-bold px-4 py-2"
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "{% url 'dashboard:logout_view' %}";
+        }
+    });
+});
+</script>
+
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

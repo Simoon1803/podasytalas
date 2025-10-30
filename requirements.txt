@@ -1,0 +1,7 @@
+Django==5.0.6
+gunicorn
+psycopg2-binary
+whitenoise
+Pillow
+python-decouple
+dj-database-url
