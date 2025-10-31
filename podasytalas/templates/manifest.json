@@ -1,15 +1,15 @@
 {
   "name": "Podas y Talas Isaías",
-  "short_name": "PodiTalas",
+  "short_name": "P&T Isaías",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#2e7d32",
+  "theme_color": "#1b5e20",
   "icons": [
     {
       "src": "/static/img/logo.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

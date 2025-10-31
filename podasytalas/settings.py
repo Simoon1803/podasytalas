@@ -12,7 +12,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = os.getenv("DJANGO_DEBUG", "1") == "1"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "podasytalasisaias.cl",
+    "www.podasytalasisaias.cl",
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
