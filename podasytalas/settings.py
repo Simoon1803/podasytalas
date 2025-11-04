@@ -4,26 +4,29 @@ from dotenv import load_dotenv
 import dj_database_url
 from django import template
 
-load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = BASE_DIR.parent  # carpeta donde está manage.py
 
-# ---------------------------- 🔐 Seguridad ----------------------------
+# Cargar variables: primero .env (PC), luego .env.production (servidor) SOBREESCRIBIENDO
+load_dotenv(PROJECT_ROOT / ".env", override=False)
+load_dotenv(PROJECT_ROOT / ".env.production", override=True)
+
+# ---- Seguridad ----
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-DEBUG = os.getenv("DJANGO_DEBUG", "1") == "1"
+DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "podasytalasisaias.cl",
-    "www.podasytalasisaias.cl",
-]
+# Hosts desde env (coma-separado)
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost"
+).split(",")
 
+# CSRF para tus dominios + dev
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000",
-    "https://podasytalasisaias.cl",
-    "https://www.podasytalasisaias.cl",
-]
+    f"https://{h.strip()}" for h in ALLOWED_HOSTS if h.strip() not in ("127.0.0.1", "localhost")
+] + ["http://127.0.0.1:8000"]
+
 
 # ---------------------------- 📦 Apps ----------------------------
 INSTALLED_APPS = [
@@ -78,23 +81,20 @@ TEMPLATES = [
     },
 ]
 
-# ---------------------------- 🗄️ Base de Datos ----------------------------
-if DEBUG:
-    # MODO DESARROLLO (PostgreSQL Local)
+# ---- Base de datos ----
+db_url = os.getenv("DATABASE_URL")
+if db_url:
+    DATABASES = {"default": dj_database_url.parse(db_url, conn_max_age=600)}
+else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": os.getenv("POSTGRES_DB"),
             "USER": os.getenv("POSTGRES_USER"),
             "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-            "HOST": os.getenv("POSTGRES_HOST"),
-            "PORT": os.getenv("POSTGRES_PORT"),
+            "HOST": os.getenv("POSTGRES_HOST", "localhost"),
+            "PORT": os.getenv("POSTGRES_PORT", "5432"),
         }
-    }
-else:
-    # MODO PRODUCCIÓN (DigitalOcean / Railway / etc)
-    DATABASES = {
-        "default": dj_database_url.config(default=os.getenv("DATABASE_URL"), conn_max_age=600)
     }
 
 # ---------------------------- 📁 Archivos estáticos ----------------------------
