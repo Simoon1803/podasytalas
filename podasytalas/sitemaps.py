@@ -1,17 +1,17 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
-class StaticSitemap(Sitemap):
-    changefreq = "monthly"
+class StaticViewSitemap(Sitemap):
     priority = 0.8
+    changefreq = "weekly"
 
     def items(self):
         return [
             'web:home',
-            'web:servicios',
+            'web:contacto',
             'web:quienes_somos',
             'web:galeria',
-            'web:contacto',
+            'web:servicios',
         ]
 
     def location(self, item):
