@@ -16,16 +16,14 @@ load_dotenv(PROJECT_ROOT / ".env.production", override=True)
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
 
-# Hosts desde env (coma-separado)
-ALLOWED_HOSTS = os.getenv(
-    "ALLOWED_HOSTS",
-    "127.0.0.1,localhost"
-).split(",")
+ALLOWED_HOSTS = ["podasytalasias.cl", "www.podasytalasias.cl", "127.0.0.1", "localhost"]
 
-# CSRF para tus dominios + dev
 CSRF_TRUSTED_ORIGINS = [
-    f"https://{h.strip()}" for h in ALLOWED_HOSTS if h.strip() not in ("127.0.0.1", "localhost")
-] + ["http://127.0.0.1:8000"]
+    "https://podasytalasias.cl",
+    "https://www.podasytalasias.cl",
+    "http://127.0.0.1:8000"
+]
+
 
 
 # ---------------------------- 📦 Apps ----------------------------

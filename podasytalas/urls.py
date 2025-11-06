@@ -16,9 +16,6 @@ sitemaps = {
 }
 
 urlpatterns = [
-    
-
-  
 
     # ✔ robots.txt
     path("robots.txt", include("django.contrib.sitemaps.views"), name="robots"),
