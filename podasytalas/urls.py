@@ -4,31 +4,50 @@ from django.views.generic import RedirectView, TemplateView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from django.http import FileResponse
+from django.http import HttpResponse, FileResponse
 from django.contrib.sitemaps.views import sitemap
 import os
-from .sitemaps import StaticViewSitemap  # ✅ Import sitemap class
+from .sitemaps import StaticViewSitemap  # Importa tu clase del archivo sitemaps.py
 
-
-# ✅ Registrar sitemaps
+# ------------------------------------------------------------
+# Registrar sitemaps
+# ------------------------------------------------------------
 sitemaps = {
     "static": StaticViewSitemap,
 }
 
+# ------------------------------------------------------------
+# Vista para robots.txt
+# ------------------------------------------------------------
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow:",
+        "Sitemap: https://podasytalasias.cl/sitemap.xml"
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+
+# ------------------------------------------------------------
+# URL Patterns principales del proyecto
+# ------------------------------------------------------------
 urlpatterns = [
-
-    # ✔ robots.txt
-    path("robots.txt", include("django.contrib.sitemaps.views"), name="robots"),
-
-      # ✅ sitemap REAL de Django
+    # ✅ Sitemap real de Django
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
-    # ✔ Manifest
-    path("manifest.json", lambda request: FileResponse(
-        open(os.path.join(BASE_DIR, "podasytalas", "templates", "manifest.json"), "rb"),
-        content_type="application/json"
-    )),
 
-    # ✅ Admin original Django oculto
+    # ✅ robots.txt
+    path("robots.txt", robots_txt, name="robots"),
+
+    # ✅ Manifest.json
+    path(
+        "manifest.json",
+        lambda request: FileResponse(
+            open(os.path.join(settings.BASE_DIR, "podasytalas", "templates", "manifest.json"), "rb"),
+            content_type="application/json"
+        ),
+        name="manifest"
+    ),
+
+    # ✅ Admin original (acceso oculto)
     path("hidden-admin/", admin.site.urls),
 
     # 🌍 Sitio web público
@@ -37,10 +56,10 @@ urlpatterns = [
     # 📊 Dashboard personalizado
     path("dashboard/", include("dashboard.urls")),
 
-    # Redirección /admin → Dashboard
+    # 🔄 Redirección /admin → Dashboard
     path("admin/", RedirectView.as_view(pattern_name="dashboard:home", permanent=False)),
 
-    # Login personalizado
+    # 🔐 Login personalizado
     path(
         "admin/login/",
         auth_views.LoginView.as_view(
@@ -50,14 +69,14 @@ urlpatterns = [
         name="login"
     ),
 
-    # Logout
+    # 🔒 Logout
     path(
         "admin/logout/",
         auth_views.LogoutView.as_view(next_page="/admin/login/"),
         name="logout"
     ),
 
-    # Recuperar contraseña
+    # 🔑 Recuperar contraseña
     path(
         "reset_password/",
         auth_views.PasswordResetView.as_view(
@@ -95,6 +114,8 @@ urlpatterns = [
     ),
 ]
 
-# ✔ Archivos multimedia
+# ------------------------------------------------------------
+# Archivos multimedia (solo en modo DEBUG)
+# ------------------------------------------------------------
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
