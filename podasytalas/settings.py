@@ -13,22 +13,24 @@ PROJECT_ROOT = BASE_DIR.parent  # carpeta donde está manage.py
 # ------------------------------------------------------------
 # 🔐 Carga de variables de entorno (.env y .env.production)
 # ------------------------------------------------------------
-ENV_PATH = PROJECT_ROOT / ".env.production"
+
+# RUTA ABSOLUTA del archivo .env.production
+ENV_PATH = Path("/home/podasytalas/.env.production")
 LOCAL_ENV_PATH = PROJECT_ROOT / ".env"
 
-# Cargar primero el .env local (si existe)
+# Cargar primero .env local (si existe)
 if LOCAL_ENV_PATH.exists():
     load_dotenv(dotenv_path=LOCAL_ENV_PATH, override=False)
 
-# Cargar luego el .env.production (si existe)
+# Cargar .env.production desde ruta absoluta
 if ENV_PATH.exists():
     print(f">>> Cargando variables desde: {ENV_PATH}")
     load_dotenv(dotenv_path=ENV_PATH, override=True)
 else:
-    print("⚠️  Archivo .env.production no encontrado")
+    print("⚠️  Archivo .env.production NO encontrado")
 
 # ------------------------------------------------------------
-# 🔐 Seguridad
+# 🔒 Seguridad
 # ------------------------------------------------------------
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
