@@ -38,12 +38,12 @@ if not SECRET_KEY:
 
 DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
 
-ALLOWED_HOSTS = ["podasytalasias.cl", "www.podasytalasias.cl", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["podasytalasisaias.cl", "www.podasytalasisaias.cl", "127.0.0.1", "localhost"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://podasytalasias.cl",
-    "https://www.podasytalasias.cl",
-    "http://127.0.0.1:8000"
+    "https://podasytalasisaias.cl",
+    "https://www.podasytalasisaias.cl",
+ 
 ]
 
 # ------------------------------------------------------------

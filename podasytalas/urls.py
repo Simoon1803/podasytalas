@@ -15,10 +15,6 @@ from .sitemaps import StaticViewSitemap  # Importa tu clase del archivo sitemaps
 sitemaps = {
     "static": StaticViewSitemap,
 }
-
-# ------------------------------------------------------------
-# Vista para robots.txt
-# ------------------------------------------------------------
 def robots_txt(request):
     lines = [
         "User-Agent: *",
@@ -27,9 +23,6 @@ def robots_txt(request):
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
-# ------------------------------------------------------------
-# URL Patterns principales del proyecto
-# ------------------------------------------------------------
 urlpatterns = [
     # ✅ Sitemap real de Django
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
