@@ -38,12 +38,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "django.contrib.sites"
     "web",
     "dashboard",
 
     "sweetify",
     "widget_tweaks",
 ]
+
+SITE_ID = 1
 
 # ---------------------------- ⚙️ Middleware ----------------------------
 MIDDLEWARE = [
