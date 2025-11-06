@@ -2,77 +2,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- 🔧 META PRINCIPALES -->
+  <!-- 🧭 CONFIGURACIÓN BÁSICA -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- 🌿 SEO PRINCIPAL -->
-  <title>{% block title %}Podas y Talas Isaias 🌳 | Expertos en manejo de árboles{% endblock %}</title>
+  <title>Podas y Talas Isaias 🌳 | Expertos en podas, talas y mantenimiento de árboles en Santiago</title>
 
-  <meta name="description" content="Empresa profesional en podas, talas, despeje de cables, limpieza de áreas verdes y trabajos en altura. Servicios seguros, rápidos y con maquinaria especializada.">
-  <meta name="keywords" content="podas, talas, árboles, cortadores de árboles, leñadores, paisajismo, servicios arboricultor, tala de emergencia, despeje de cables, poda en altura Chile">
-  <meta name="author" content="Podas y Talas Isaias">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="description" content="Empresa líder en podas, talas, despeje de cables y mantenimiento de árboles en Santiago y toda la Región Metropolitana. Servicios seguros, rápidos y profesionales con maquinaria especializada. Cotiza con Podas y Talas Isaías.">
+  <meta name="keywords" content="podas, talas, árboles, leñadores, arboricultor, poda en altura, tala de emergencia, despeje de cables, jardinería, mantenimiento de áreas verdes, cortadores de arboles,  corte de árboles, servicios de poda, Santiago, Región Metropolitana, Chile, Podas y Talas Isaías">
+  <meta name="author" content="Podas y Talas Isaias LTDA">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="language" content="Spanish">
+  <meta name="revisit-after" content="3 days">
+  <meta name="distribution" content="global">
+  <meta name="rating" content="general">
+
+  <!-- 🌐 GEOLOCALIZACIÓN -->
   <meta name="geo.region" content="CL-RM">
   <meta name="geo.placename" content="Santiago de Chile">
   <meta name="geo.position" content="-33.4569;-70.6483">
   <meta name="ICBM" content="-33.4569, -70.6483">
 
-  <!-- 🌐 Canonical -->
+  <!-- 🔗 CANONICAL Y FAVICON -->
   <link rel="canonical" href="https://podasytalasisaias.cl">
-
-  <!-- 🌿 Favicon -->
   <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
   <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/logo.png' %}">
 
-  <!-- 📱 Open Graph (Facebook / WhatsApp) -->
-  <meta property="og:title" content="Podas y Talas Isaias | Expertos en trabajos en altura">
-  <meta property="og:description" content="Servicio profesional de podas y talas en toda la RM. Seguridad, rapidez y maquinaria especializada.">
-  <meta property="og:image" content="https://podasytalasisaias.cl/static/img/logo.png">
-  <meta property="og:url" content="https://podasytalasisaias.cl">
-  <meta property="og:type" content="website">
-
-  <!-- 🐦 Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- 📲 Manifest PWA -->
-  <link rel="manifest" href="/manifest.json">
+  <!-- 🧠 METADATOS AVANZADOS PARA GOOGLE -->
+  <meta name="googlebot" content="index, follow">
+  <meta name="google-site-verification" content="google61d0be618329f906.html">
   <meta name="theme-color" content="#1b5e20">
+  <meta name="application-name" content="Podas y Talas Isaias">
+  <meta name="apple-mobile-web-app-title" content="Podas y Talas Isaias">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <!-- 🌱 Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- 📱 OPEN GRAPH (Facebook / WhatsApp / Instagram) -->
+  <meta property="og:locale" content="es_CL">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Podas y Talas Isaias | Expertos en trabajos en altura y tala de árboles">
+  <meta property="og:description" content="Servicios profesionales de podas, talas y despeje de cables en toda la Región Metropolitana. Rápidos, seguros y con maquinaria especializada.">
+  <meta property="og:url" content="https://podasytalasisaias.cl">
+  <meta property="og:site_name" content="Podas y Talas Isaías">
+  <meta property="og:image" content="https://podasytalasisaias.cl/static/img/logo.png">
+  <meta property="og:image:alt" content="Logo de Podas y Talas Isaías">
 
-  <!-- 🎨 Estilos globales -->
-  <link rel="stylesheet" href="{% static 'css/web.css' %}">
+  <!-- 🐦 TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Podas y Talas Isaias | Expertos en poda y tala de árboles">
+  <meta name="twitter:description" content="Empresa profesional de podas, talas y despeje de cables en Santiago y alrededores.">
+  <meta name="twitter:image" content="https://podasytalasisaias.cl/static/img/logo.png">
 
-  {% block extra_head %}{% endblock %}
+  <!-- 💬 WHATSAPP / DISCOVER -->
+  <meta property="og:whatsapp" content="https://wa.me/56927652097?text=Hola!%20Me%20gustaría%20cotizar%20un%20servicio%20de%20podas%20y%20talas.">
+  <meta name="google" content="notranslate">
 
-  <!-- 🧩 Datos estructurados (SEO Local) -->
+  <!-- 🧩 DATOS ESTRUCTURADOS LOCALBUSINESS -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Podas y Talas Isaias",
-      "description": "Podas y talas profesionales de árboles. Seguridad, experiencia y maquinaria especializada.",
-      "image": "https://www.podasytalasisaias.cl/static/img/logo.png",
-      "url": "https://www.podasytalasisaias.cl",
+      "image": "https://podasytalasisaias.cl/static/img/logo.png",
+      "@id": "https://podasytalasisaias.cl",
+      "url": "https://podasytalasisaias.cl",
       "telephone": "+56927652097",
+      "priceRange": "$$",
+      "description": "Podas y Talas Isaias ofrece servicios profesionales de poda, tala y despeje de árboles con seguridad, rapidez y maquinaria especializada en Santiago.",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "CL",
+        "addressRegion": "RM",
         "addressLocality": "Santiago",
-        "addressRegion": "RM"
+        "postalCode": "8320000"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -33.4569,
+        "longitude": -70.6483
+      },
+      "openingHours": ["Mo-Sa 08:00-19:00"],
       "sameAs": [
-        "https://instagram.com/podasytalasisaias",
-        "https://facebook.com/isaiaspodasytalas",
+        "https://www.facebook.com/isaiaspodasytalas",
+        "https://www.instagram.com/podasytalasisaias",
         "https://wa.me/56927652097"
       ]
     }
   </script>
+
+  <!-- 🌱 Bootstrap & Estilos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/web.css' %}">
+  {% block extra_head %}{% endblock %}
 </head>
 
 <body>
@@ -122,47 +146,47 @@
       <p class="mb-3">© 2025 Podas y Talas Isaias LTDA — Todos los derechos reservados</p>
 
       <div class="d-flex justify-content-center gap-4 mb-3">
-        <a href="https://www.instagram.com/podasytalasisaias?igsh=bW92MWhtb2J1azJ4/" target="_blank" class="text-white fs-4 social-icon"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.instagram.com/podasytalasisaias" target="_blank" class="text-white fs-4 social-icon"><i class="bi bi-instagram"></i></a>
         <a href="https://wa.me/56927652097" target="_blank" class="text-white fs-4 social-icon"><i class="bi bi-whatsapp"></i></a>
         <a href="https://www.facebook.com/isaiaspodasytalas/" target="_blank" class="text-white fs-4 social-icon"><i class="bi bi-facebook"></i></a>
       </div>
     </div>
   </footer>
 
-  <!-- 🌈 ESTILOS NAVBAR -->
+  <!-- 🌈 NAVBAR ESTILO -->
   <style>
-  #mainNavbar {
-    background: rgba(11, 71, 38, 0.9);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-  }
-  #mainNavbar.scrolled { background: #0b4726; }
-  .nav-link { color: rgba(255,255,255,0.9); position: relative; transition: all 0.3s ease; }
-  .nav-link:hover, .nav-link.active { color: #ffcc66 !important; }
-  .nav-link::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #ffcc66;
-    transition: width 0.3s ease;
-  }
-  .nav-link:hover::after { width: 100%; }
-  .btn-success { background-color: #198754 !important; border: none; }
-  .btn-success:hover { background-color: #157347 !important; }
-  .social-icon:hover { color: #ffffff !important; transform: scale(1.1); transition: all 0.3s ease; }
+    #mainNavbar {
+      background: rgba(11, 71, 38, 0.9);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+    #mainNavbar.scrolled { background: #0b4726; }
+    .nav-link { color: rgba(255,255,255,0.9); position: relative; transition: all 0.3s ease; }
+    .nav-link:hover, .nav-link.active { color: #ffcc66 !important; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #ffcc66;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .btn-success { background-color: #198754 !important; border: none; }
+    .btn-success:hover { background-color: #157347 !important; }
+    .social-icon:hover { color: #ffffff !important; transform: scale(1.1); transition: all 0.3s ease; }
   </style>
 
-  <!-- 🌿 EFECTO SCROLL NAVBAR -->
+  <!-- 🌿 EFECTO SCROLL -->
   <script>
-  document.addEventListener("scroll", function() {
-    const navbar = document.getElementById("mainNavbar");
-    if (window.scrollY > 50) { navbar.classList.add("scrolled"); }
-    else { navbar.classList.remove("scrolled"); }
-  });
+    document.addEventListener("scroll", function() {
+      const navbar = document.getElementById("mainNavbar");
+      if (window.scrollY > 50) { navbar.classList.add("scrolled"); }
+      else { navbar.classList.remove("scrolled"); }
+    });
   </script>
 
   <!-- ⚙️ Bootstrap + SweetAlert -->
