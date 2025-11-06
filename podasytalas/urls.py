@@ -7,9 +7,8 @@ from django.conf.urls.static import static
 from django.http import FileResponse
 from django.contrib.sitemaps.views import sitemap
 import os
-
 from .sitemaps import StaticViewSitemap  # ✅ Import sitemap class
-from podasytalas.settings import BASE_DIR
+
 
 # ✅ Registrar sitemaps
 sitemaps = {
@@ -19,15 +18,13 @@ sitemaps = {
 urlpatterns = [
     
 
-    # ✅ sitemap REAL de Django
-    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+  
 
     # ✔ robots.txt
-    path("robots.txt", TemplateView.as_view(
-        template_name="robots.txt",
-        content_type="text/plain"
-    )),
+    path("robots.txt", include("django.contrib.sitemaps.views"), name="robots"),
 
+      # ✅ sitemap REAL de Django
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
     # ✔ Manifest
     path("manifest.json", lambda request: FileResponse(
         open(os.path.join(BASE_DIR, "podasytalas", "templates", "manifest.json"), "rb"),
