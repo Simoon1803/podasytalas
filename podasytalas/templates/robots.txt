@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.podasytalasisaias.cl/sitemap.xml
+Sitemap: https://podasytalasisaias.cl/sitemap.xml
