@@ -11,7 +11,8 @@ from web.models import Service, GalleryImage, Video, TeamMember, ContactInfo, Ab
 def home(request):
     services = Service.objects.all()[:6]
     gallery = GalleryImage.objects.all()[:6]
-    videos = Video.objects.all()[:3]
+    videos = list(Video.objects.all())
+
     team = TeamMember.objects.all()
     contact = ContactInfo.objects.first()
     about = AboutUs.objects.first()
@@ -37,7 +38,7 @@ def home(request):
                 subject=f"📋 Nueva solicitud de presupuesto — {budget.name}",
                 body="Tienes una nueva solicitud de presupuesto.",
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                to=["simoncaroca20@gmail.com"],
+                to=["isaiaspodasytalas@gmail.com"],
             )
             email_admin.attach_alternative(html_admin, "text/html")
             email_admin.send()

@@ -97,7 +97,7 @@
 
             <div class="mt-3 d-flex justify-content-center gap-2">
               <button class="btn btn-success rounded-pill fw-semibold"
-                      onclick="showService('{{ s.title|escapejs }}', '{{ s.description|escapejs }}', '{% if s.image %}{{ s.image.url }}{% else %}{% static 'img/logo.png' %}{% endif %}')">
+                      onclick="showService('{{ s.title|escapejs }}', '{{ s.description|escapejs }}', '{% if s.image %}{{ s.image.url }}{% else %}{{ default_logo }}{% endif %}')">
                 <i class="bi bi-eye-fill"></i> Ver más
               </button>
               <a href="{% url 'web:contacto' %}" class="btn btn-outline-success rounded-pill fw-semibold">
