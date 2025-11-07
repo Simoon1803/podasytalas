@@ -23,7 +23,7 @@
   </div>
 </section>
 
-<!-- 🧾 FORMULARIO DE PRESUPUESTO -->
+<!-- 🧾 FORMULARIO DE PRESUPUESTO (igual que el tuyo original) -->
 <section id="presupuesto" class="py-5 bg-light">
   <div class="container">
     <h2 class="fw-bold text-success text-center mb-4" data-aos="fade-up">
@@ -69,7 +69,7 @@
   </div>
 </section>
 
-<!-- 🌳 SERVICIOS (igual a servicios.html) -->
+<!-- 🌳 SERVICIOS ACTUALIZADOS (idéntico a servicios.html) -->
 <section class="py-5 bg-light">
   <div class="container">
     <h2 class="fw-bold text-success text-center mb-5" data-aos="fade-up">
@@ -80,7 +80,6 @@
       {% for s in services %}
       <div class="col-lg-4 col-md-6 col-sm-10" data-aos="zoom-in" data-aos-delay="{{ forloop.counter|add:'1' }}00">
         <div class="service-card shadow-lg border-0 rounded-4 h-100">
-          
           {% if s.image %}
           <div class="service-img-wrapper">
             <img src="{{ s.image.url }}" alt="{{ s.title }}" class="service-img">
@@ -100,7 +99,6 @@
                       onclick="showService('{{ s.title|escapejs }}', '{{ s.description|escapejs }}', '{% if s.image %}{{ s.image.url }}{% else %}{{ default_logo }}{% endif %}')">
                 <i class="bi bi-eye-fill"></i> Ver más
               </button>
-              
               <a href="{% url 'web:contacto' %}" class="btn btn-outline-success rounded-pill fw-semibold">
                 <i class="bi bi-chat-text"></i> Cotizar
               </a>
@@ -154,7 +152,6 @@
     <h2 class="fw-bold mb-5" data-aos="fade-up" style="font-size:2.3rem; color:#fff;">
       ¿Por qué elegir a <span style="color:#e8c27c;">Podas y Talas Isaías</span>?
     </h2>
-
     <div class="row g-4 justify-content-center">
       <div class="col-lg-6 col-xl-3" data-aos="zoom-in" data-aos-delay="100">
         <div class="choose-card h-100 shadow-lg">
@@ -163,7 +160,6 @@
           <p>Más de una década entregando servicios de excelencia en podas, talas y mantenimiento, con personal especializado y maquinaria de primer nivel.</p>
         </div>
       </div>
-
       <div class="col-lg-6 col-xl-3" data-aos="zoom-in" data-aos-delay="200">
         <div class="choose-card h-100 shadow-lg">
           <div class="icon-box mb-3"><i class="bi bi-shield-lock"></i></div>
@@ -171,7 +167,6 @@
           <p>Trabajamos con protocolos certificados y aseguramos el bienestar de tu propiedad y de nuestro equipo en cada proyecto realizado.</p>
         </div>
       </div>
-
       <div class="col-lg-6 col-xl-3" data-aos="zoom-in" data-aos-delay="300">
         <div class="choose-card h-100 shadow-lg">
           <div class="icon-box mb-3"><i class="bi bi-hourglass-split"></i></div>
@@ -179,7 +174,6 @@
           <p>Cumplimos con cada cliente en tiempo y forma, ofreciendo resultados confiables, transparentes y de alta calidad.</p>
         </div>
       </div>
-
       <div class="col-lg-6 col-xl-3" data-aos="zoom-in" data-aos-delay="400">
         <div class="choose-card h-100 shadow-lg">
           <div class="icon-box mb-3"><i class="bi bi-flower3"></i></div>
@@ -191,16 +185,16 @@
   </div>
 </section>
 
-<!-- ✅ WHATSAPP FLOAT -->
-<a href="https://api.whatsapp.com/send?phone=56927652097&text=Hola%20necesito%20una%20cotizaci%C3%B3n%20de%20podas%20y%20talas" class="whatsapp-float" target="_blank" rel="noopener">
+<!-- ✅ BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://api.whatsapp.com/send?phone=56927652097&text=Hola%20necesito%20una%20cotizaci%C3%B3n%20de%20podas%20y%20talas" 
+class="whatsapp-float" target="_blank" rel="noopener">
   <i class="bi bi-whatsapp"></i>
 </a>
 
-<!-- ✅ SCRIPTS -->
+<!-- ✅ SCRIPT SWEETALERT -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 const defaultLogo = "{% static 'img/logo.png' %}";
-
 function showService(title, description, imageUrl) {
   const image = imageUrl && imageUrl !== 'None' ? imageUrl : defaultLogo;
   Swal.fire({
@@ -211,41 +205,30 @@ function showService(title, description, imageUrl) {
     background: '#fff',
     confirmButtonColor: '#2e7d32',
     confirmButtonText: 'Cerrar',
-    showClass: { popup: 'animate__animated animate__zoomIn' },
-    hideClass: { popup: 'animate__animated animate__fadeOutDown' }
   });
 }
-
-document.getElementById("confirmButton").addEventListener("click", function() {
-  Swal.fire({
-    title: "¿Enviar solicitud de presupuesto?",
-    text: "Verifica que tus datos sean correctos antes de continuar.",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#2e7d32",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Sí, enviar",
-    cancelButtonText: "Cancelar"
-  }).then((r)=>{ if(r.isConfirmed){ document.getElementById("budgetForm").submit(); }});
-});
 </script>
 
-<!-- 🌈 ESTILOS -->
+<!-- 🌈 ESTILOS FINALES (tus inputs, whatsapp, etc.) -->
 <style>
-.hero-section{position:relative;height:95vh;overflow:hidden;}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1) saturate(1.3);}
-.hero-overlay{position:relative;z-index:2;background:rgba(0,60,25,0.55);width:100%;height:100%;}
-.service-card{background:#fff;transition:all 0.4s ease;border-radius:1rem;overflow:hidden;}
+input, textarea, select{
+  border-radius:10px!important;
+  border:1.5px solid #cce3d0;
+  padding:10px 12px;
+  width:100%;
+  transition:all .3s ease;
+}
+input:focus, textarea:focus{
+  border-color:#2e7d32;
+  box-shadow:0 0 8px rgba(46,125,50,0.3);
+}
+.service-card{background:#fff;transition:.4s ease;border-radius:1rem;overflow:hidden;}
 .service-card:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
 .service-img-wrapper{height:250px;overflow:hidden;}
-.service-img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
+.service-img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
 .service-card:hover .service-img{transform:scale(1.05);}
-.choose-us-section{background:linear-gradient(180deg,#5a3e2b 0%,#7b5b3d 100%);color:#fff;padding-top:5rem;padding-bottom:5rem;}
-.choose-card{background:rgba(255,255,255,0.08);border-radius:1.5rem;padding:2rem 1.5rem;border:1px solid rgba(255,255,255,0.15);transition:all 0.4s ease;color:#fff;}
-.choose-card:hover{background:rgba(255,255,255,0.18);transform:translateY(-8px);box-shadow:0 10px 30px rgba(0,0,0,0.35);}
-.icon-box{font-size:2.8rem;color:#e8c27c;background:rgba(255,255,255,0.1);width:70px;height:70px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;}
-.whatsapp-float{position:fixed;right:20px;bottom:20px;background-color:#25D366;color:#fff;font-size:28px;width:60px;height:60px;border-radius:50%;box-shadow:0 10px 25px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;z-index:9999;transition:all .2s ease;}
-.whatsapp-float:hover{transform:scale(1.08);}
+.whatsapp-float{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;font-size:28px;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 25px rgba(0,0,0,0.3);z-index:9999;transition:all .3s ease;}
+.whatsapp-float:hover{transform:scale(1.1);}
 </style>
 
 {% endblock %}
