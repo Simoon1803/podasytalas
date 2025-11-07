@@ -70,7 +70,7 @@
   </div>
 </section>
 
-<!-- 🌳 SERVICIOS (IGUAL A servicios.html) -->
+<!-- 🌳 SERVICIOS (idéntico a servicios.html) -->
 <section class="py-5 bg-light">
   <div class="container">
     <h2 class="fw-bold text-success text-center mb-5" data-aos="fade-up">
@@ -111,6 +111,39 @@
       </div>
       {% empty %}
       <div class="text-center text-muted">🌱 Aún no hay servicios registrados.</div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 🎥 VIDEOS DESTACADOS -->
+<section id="videos" class="py-5 bg-white">
+  <div class="container">
+    <h2 class="fw-bold text-success text-center mb-5" data-aos="fade-up">
+      <i class="bi bi-camera-reels"></i> Videos Destacados
+    </h2>
+    <div class="row g-4 justify-content-center">
+      {% for v in videos %}
+      <div class="col-lg-4 col-md-6 col-sm-8" data-aos="zoom-in" data-aos-delay="{{ forloop.counter|add:'1' }}00">
+        <div class="video-card-pro shadow-lg rounded-4 overflow-hidden border border-success-subtle">
+          <div class="ratio ratio-16x9 video-frame-wrapper">
+            {% if v.video_file %}
+              <video controls class="w-100 h-100" style="object-fit:cover;">
+                <source src="{{ v.video_file.url }}" type="video/mp4">
+              </video>
+            {% elif v.video_url %}
+              <iframe src="{{ v.video_url }}" allowfullscreen></iframe>
+            {% else %}
+              <div class="d-flex align-items-center justify-content-center bg-dark text-white">
+                <span class="small text-secondary">Sin video disponible</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <p class="fw-semibold text-center mt-3">{{ v.title }}</p>
+      </div>
+      {% empty %}
+      <div class="col-12 text-center text-muted">🎬 Aún no hay videos disponibles.</div>
       {% endfor %}
     </div>
   </div>
@@ -178,6 +211,19 @@
       hideClass: { popup: 'animate__animated animate__fadeOutDown' }
     });
   }
+
+  document.getElementById("confirmButton").addEventListener("click", function() {
+    Swal.fire({
+      title: "¿Enviar solicitud de presupuesto?",
+      text: "Verifica que tus datos sean correctos antes de continuar.",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#2e7d32",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, enviar",
+      cancelButtonText: "Cancelar"
+    }).then((r)=>{ if(r.isConfirmed){ document.getElementById("budgetForm").submit(); }});
+  });
 </script>
 
 <!-- 🌈 ESTILOS -->
@@ -194,6 +240,7 @@
 .choose-card{background:rgba(255,255,255,0.08);border-radius:1.5rem;padding:2rem 1.5rem;border:1px solid rgba(255,255,255,0.15);transition:all 0.4s ease;color:#fff;}
 .choose-card:hover{background:rgba(255,255,255,0.18);transform:translateY(-8px);}
 .icon-box{font-size:2.8rem;color:#e8c27c;background:rgba(255,255,255,0.1);width:70px;height:70px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;}
+.video-card-pro:hover{transform:scale(1.03);box-shadow:0 16px 35px rgba(0,0,0,0.15);}
 </style>
 
 {% endblock %}
