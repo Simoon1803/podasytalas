@@ -73,36 +73,33 @@
 <section id="servicios" class="py-5 bg-white position-relative">
   <div class="container">
     <h2 class="fw-bold text-success text-center mb-5" data-aos="fade-up">
-      <i class="bi bi-tree"></i> Nuestros Servicios Destacados
+      <i class="bi bi-tools"></i> Nuestros Servicios
     </h2>
 
     <div class="row g-4 justify-content-center">
       {% for s in services %}
-      <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter|add:'1' }}00">
-        <div class="service-card-pro h-100 d-flex flex-column shadow-lg rounded-4 border-0">
+      <div class="col-lg-4 col-md-6 col-sm-10" data-aos="zoom-in" data-aos-delay="{{ forloop.counter|add:'1' }}00">
+        <div class="service-card shadow-lg border-0 rounded-4 h-100">
           
           {% if s.image %}
-          <div class="service-img-wrapper position-relative">
-            <img src="{{ s.image.url }}" class="service-img-pro" alt="{{ s.title }}">
-            <div class="service-badge"><i class="bi bi-shield-check"></i> Servicio Profesional</div>
+          <div class="service-img-wrapper">
+            <img src="{{ s.image.url }}" alt="{{ s.title }}" class="service-img">
           </div>
           {% else %}
-          <div class="service-img-wrapper position-relative">
-            <img src="{% static 'img/logo.png' %}" class="service-img-pro" alt="Servicio">
-            <div class="service-badge"><i class="bi bi-tools"></i> Servicio General</div>
+          <div class="service-img-wrapper">
+            <img src="{% static 'img/logo.png' %}" alt="{{ s.title }}" class="service-img">
           </div>
           {% endif %}
-          
+
           <div class="card-body p-4 text-center">
             <h5 class="fw-bold text-success mb-3 text-capitalize">{{ s.title }}</h5>
             <p class="text-muted">{{ s.description|truncatechars:120 }}</p>
 
             <div class="mt-3 d-flex justify-content-center gap-2">
               <button class="btn btn-success rounded-pill fw-semibold"
-                      onclick="showService('{{ s.title|escapejs }}', '{{ s.description|escapejs }}', '{% if s.image %}{{ s.image.url }}{% else %}{{ default_logo }}{% endif %}')">
+                      onclick="showService('{{ s.title|escapejs }}', '{{ s.description|escapejs }}', '{% if s.image %}{{ s.image.url }}{% else %}{% static 'img/logo.png' %}{% endif %}')">
                 <i class="bi bi-eye-fill"></i> Ver más
               </button>
-              
               <a href="{% url 'web:contacto' %}" class="btn btn-outline-success rounded-pill fw-semibold">
                 <i class="bi bi-chat-text"></i> Cotizar
               </a>
@@ -111,12 +108,11 @@
         </div>
       </div>
       {% empty %}
-      <div class="col-12 text-center text-muted">🌱 Aún no hay servicios registrados.</div>
+      <div class="text-center text-muted">🌱 Aún no hay servicios registrados.</div>
       {% endfor %}
     </div>
   </div>
 </section>
-
 <!-- 🎥 VIDEOS -->
 <section id="videos" class="py-5 bg-white">
   <div class="container">
@@ -216,31 +212,23 @@ if(box.dataset.message && box.dataset.tag==="success"){
   Swal.fire({position:"top-end",icon:"success",title:"Tu solicitud fue enviada con éxito",showConfirmButton:false,timer:1500,toast:true});
 }
 
- // Funcionalidad mejorada "Ver más"
-  document.querySelectorAll('.ver-mas-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.service-card-pro');
-      const title = card.querySelector('h5').textContent.trim();
-      const description = card.querySelector('p').textContent.trim();
-      const img = card.querySelector('img') ? card.querySelector('img').src : "{% static 'img/logo.png' %}";
-      Swal.fire({
-        title: `<h2 class="fw-bold text-success mb-3">${title}</h2>`,
-        html: `
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
-            <img src="${img}" alt="${title}" 
-              style="max-width:380px;border-radius:1rem;box-shadow:0 4px 25px rgba(0,0,0,0.2);margin-bottom:15px;">
-            <p style="text-align:justify;font-size:1.05rem;color:#333;max-width:90%;">${description}</p>
-          </div>
-        `,
-        confirmButtonText: "Cerrar",
-        confirmButtonColor: "#2e7d32",
-        background: "#fff",
-        backdrop: "rgba(0,0,0,0.6)",
-        showClass: { popup: "animate__animated animate__zoomIn" },
-        hideClass: { popup: "animate__animated animate__fadeOutDown" }
-      });
-    });
+function showService(title, description, imageUrl) {
+  Swal.fire({
+    title: `<h3 class="fw-bold text-success">${title}</h3>`,
+    html: `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <img src="${imageUrl}" alt="${title}" style="max-width:380px;border-radius:1rem;box-shadow:0 4px 25px rgba(0,0,0,0.2);margin-bottom:15px;">
+        <p style="text-align:justify;font-size:1.05rem;color:#333;max-width:90%;">${description}</p>
+      </div>
+    `,
+    confirmButtonText: "Cerrar",
+    confirmButtonColor: "#2e7d32",
+    background: "#fff",
+    backdrop: "rgba(0,0,0,0.6)",
+    showClass: { popup: "animate__animated animate__zoomIn" },
+    hideClass: { popup: "animate__animated animate__fadeOutDown" }
   });
+}
 </script>
 
 <a href="https://api.whatsapp.com/send?phone=56927652097&text=Hola%20necesito%20una%20cotizaci%C3%B3n%20de%20podas%20y%20talas" class="whatsapp-float" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i></a>
@@ -252,11 +240,29 @@ if(box.dataset.message && box.dataset.tag==="success"){
 .hero-overlay{position:relative;z-index:2;background:rgba(0,60,25,0.55);width:100%;height:100%;}
 input,textarea,select{border-radius:10px!important;border:1.5px solid #cce3d0;padding:10px 12px;width:100%;transition:all .3s ease;}
 input:focus,textarea:focus{border-color:#2e7d32;box-shadow:0 0 8px rgba(46,125,50,0.3);}
-.service-card-pro{border-radius:1rem;background:#fff;transition:all .3s ease;border:1px solid rgba(0,0,0,0.05);}
-.service-card-pro:hover{transform:translateY(-6px);box-shadow:0 16px 35px rgba(0,0,0,0.15);}
-.service-img-pro{width:100%;height:220px;object-fit:cover;transition:transform .4s ease;}
-.service-card-pro:hover .service-img-pro{transform:scale(1.05);}
-.service-badge{position:absolute;top:12px;left:12px;background:rgba(25,135,84,0.9);color:#fff;font-size:.8rem;font-weight:600;padding:.4rem .6rem;border-radius:.5rem;}
+.service-card {
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all .3s ease;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.service-img-wrapper {
+  height: 250px;
+  overflow: hidden;
+}
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.service-card:hover .service-img {
+  transform: scale(1.05);
+}
 .video-card-pro{border-radius:1rem;background:#fff;transition:all .3s ease;}
 .video-card-pro:hover{transform:scale(1.03);box-shadow:0 16px 35px rgba(0,0,0,0.15);}
 .choose-us-section{background:linear-gradient(180deg,#5a3e2b 0%,#7b5b3d 100%);color:#fff;position:relative;overflow:hidden;padding-top:5rem;padding-bottom:5rem;}
