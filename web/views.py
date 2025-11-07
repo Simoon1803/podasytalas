@@ -32,17 +32,17 @@ def home(request):
                 "year": timezone.now().year,
             }
 
-            # Enviar correo al admin
+                        # Enviar correo al admin
             html_admin = render_to_string("emails/admin_notification.html", context)
             email_admin = EmailMultiAlternatives(
                 subject=f"📋 Nueva solicitud de presupuesto — {budget.name}",
                 body="Tienes una nueva solicitud de presupuesto.",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=["isaiaspodasytalas@gmail.com"],
+                reply_to=[budget.email],  # 👈 este es el cambio importante
             )
             email_admin.attach_alternative(html_admin, "text/html")
             email_admin.send()
-
             # Enviar confirmación al cliente
             html_client = render_to_string("emails/client_confirmation.html", context)
             email_client = EmailMultiAlternatives(
