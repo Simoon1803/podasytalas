@@ -69,7 +69,7 @@
   </div>
 </section>
 
-<!-- 🌳 SERVICIOS (actualizado igual que servicios.html) -->
+<!-- 🌳 SERVICIOS (igual a servicios.html) -->
 <section class="py-5 bg-light">
   <div class="container">
     <h2 class="fw-bold text-success text-center mb-5" data-aos="fade-up">
@@ -191,7 +191,12 @@
   </div>
 </section>
 
-<!-- ✅ SWEETALERT Y WHATSAPP -->
+<!-- ✅ WHATSAPP FLOAT -->
+<a href="https://api.whatsapp.com/send?phone=56927652097&text=Hola%20necesito%20una%20cotizaci%C3%B3n%20de%20podas%20y%20talas" class="whatsapp-float" target="_blank" rel="noopener">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<!-- ✅ SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 const defaultLogo = "{% static 'img/logo.png' %}";
@@ -225,20 +230,22 @@ document.getElementById("confirmButton").addEventListener("click", function() {
 });
 </script>
 
-<a href="https://api.whatsapp.com/send?phone=56927652097&text=Hola%20necesito%20una%20cotizaci%C3%B3n%20de%20podas%20y%20talas" class="whatsapp-float" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i></a>
-
 <!-- 🌈 ESTILOS -->
 <style>
 .hero-section{position:relative;height:95vh;overflow:hidden;}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1) saturate(1.3);}
 .hero-overlay{position:relative;z-index:2;background:rgba(0,60,25,0.55);width:100%;height:100%;}
-input,textarea,select{border-radius:10px!important;border:1.5px solid #cce3d0;padding:10px 12px;width:100%;transition:all .3s ease;}
-input:focus,textarea:focus{border-color:#2e7d32;box-shadow:0 0 8px rgba(46,125,50,0.3);}
 .service-card{background:#fff;transition:all 0.4s ease;border-radius:1rem;overflow:hidden;}
 .service-card:hover{transform:translateY(-6px);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
 .service-img-wrapper{height:250px;overflow:hidden;}
 .service-img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
 .service-card:hover .service-img{transform:scale(1.05);}
+.choose-us-section{background:linear-gradient(180deg,#5a3e2b 0%,#7b5b3d 100%);color:#fff;padding-top:5rem;padding-bottom:5rem;}
+.choose-card{background:rgba(255,255,255,0.08);border-radius:1.5rem;padding:2rem 1.5rem;border:1px solid rgba(255,255,255,0.15);transition:all 0.4s ease;color:#fff;}
+.choose-card:hover{background:rgba(255,255,255,0.18);transform:translateY(-8px);box-shadow:0 10px 30px rgba(0,0,0,0.35);}
+.icon-box{font-size:2.8rem;color:#e8c27c;background:rgba(255,255,255,0.1);width:70px;height:70px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;}
+.whatsapp-float{position:fixed;right:20px;bottom:20px;background-color:#25D366;color:#fff;font-size:28px;width:60px;height:60px;border-radius:50%;box-shadow:0 10px 25px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;z-index:9999;transition:all .2s ease;}
+.whatsapp-float:hover{transform:scale(1.08);}
 </style>
 
 {% endblock %}
