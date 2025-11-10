@@ -12,7 +12,11 @@ class StaticViewSitemap(Sitemap):
             'web:quienes_somos',
             'web:galeria',
             'web:servicios',
+            # Agrega favicon
+            'web:favicon',
         ]
 
     def location(self, item):
+        if item == 'web:favicon':
+            return '/favicon.ico'
         return reverse(item)
