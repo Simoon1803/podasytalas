@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Panel Administrativo | Podas y Talas Isaías{% endblock %}</title>
 
-  <!-- 🔗 Bootstrap + Icons -->
+  <!-- 📦 Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/forms.css' %}">
@@ -16,11 +16,11 @@
 
 <body class="bg-light d-flex flex-column min-vh-100">
 
-  <!-- 🌿 NAVBAR ADMIN -->
+  <!-- 🌿 NAVBAR -->
   <nav id="adminNavbar" class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
     <div class="container-fluid px-4">
       <a class="navbar-brand d-flex align-items-center" href="{% url 'dashboard:home' %}">
-        <img src="{% static 'img/logo.png' %}" alt="Logo" class="me-2" style="height:45px;object-fit:contain;">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="me-2" style="height:46px;object-fit:contain;">
         <span class="fw-bold fs-5 text-white">Podas y Talas Isaias LTDA</span>
       </a>
 
@@ -50,7 +50,7 @@
     </div>
   </nav>
 
-  <!-- 📋 CONTENIDO PRINCIPAL -->
+  <!-- 📋 CONTENIDO -->
   <main class="flex-grow-1 container py-5 mt-5">
     {% block content %}{% endblock %}
   </main>
@@ -61,17 +61,18 @@
     <p class="mb-1 small">© 2025 Podas y Talas Isaias LTDA — Panel Administrativo</p>
   </footer>
 
-  <!-- 💅 ESTILOS PERSONALIZADOS -->
+  <!-- 🎨 ESTILOS PERSONALIZADOS -->
   <style>
-    /* 🌿 Navbar estilo igual que la web pública */
+    /* 🌿 NAVBAR con profundidad y elegancia */
     #adminNavbar {
-      background-color: #1b5e20; /* Verde principal */
-      box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+      background: linear-gradient(180deg, #0b4726 0%, #145a32 90%);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
       transition: all 0.3s ease;
       backdrop-filter: blur(6px);
+      border-bottom: 2px solid #ffcc66;
     }
     #adminNavbar.scrolled {
-      background-color: #0b4726; /* tono más oscuro al hacer scroll */
+      background: linear-gradient(180deg, #09371e 0%, #124d2b 100%);
     }
 
     .nav-link {
@@ -81,7 +82,8 @@
       font-weight: 500;
     }
     .nav-link:hover, .nav-link.active {
-      color: #ffcc66 !important; /* Dorado igual que la web */
+      color: #ffcc66 !important;
+      text-shadow: 0 0 5px rgba(255, 204, 102, 0.7);
     }
     .nav-link::after {
       content: "";
@@ -93,31 +95,33 @@
       background-color: #ffcc66;
       transition: width 0.3s ease;
     }
-    .nav-link:hover::after {
-      width: 100%;
-    }
+    .nav-link:hover::after { width: 100%; }
 
-    /* 🌱 Botón cerrar sesión */
+    /* 🟡 Botón cerrar sesión */
     .btn-outline-light {
       border-color: #ffcc66 !important;
       color: #fff !important;
+      border-width: 2px;
+      border-radius: 8px;
       transition: all 0.3s ease;
     }
     .btn-outline-light:hover {
       background-color: #ffcc66 !important;
       color: #0b4726 !important;
+      box-shadow: 0 0 10px rgba(255, 204, 102, 0.8);
     }
 
-    /* 🌳 Footer coherente */
+    /* 🌳 FOOTER */
     footer {
-      background-color: #0b4726;
+      background: linear-gradient(180deg, #0b4726 0%, #09371e 100%);
       font-size: 0.9rem;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.25);
+      letter-spacing: 0.3px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
     }
 
     body {
-      background-color: #f5f7f6;
-      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f7f4;
+      font-family: "Segoe UI", sans-serif;
     }
   </style>
 
@@ -126,17 +130,14 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
-    // 🌿 Efecto scroll para cambiar color del navbar
+    // 🌿 Cambiar color del navbar al hacer scroll
     document.addEventListener("scroll", function() {
       const navbar = document.getElementById("adminNavbar");
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
+      if (window.scrollY > 50) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
     });
 
-    // 🔴 Confirmación de cierre de sesión
+    // 🔴 Confirmación cierre de sesión
     document.getElementById("logout-btn").addEventListener("click", function (e) {
       e.preventDefault();
       Swal.fire({
