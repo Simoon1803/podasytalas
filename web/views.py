@@ -39,7 +39,7 @@ def home(request):
                 body="Tienes una nueva solicitud de presupuesto.",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=["isaiaspodasytalas@gmail.com"],
-                reply_to=[budget.email],  # 👈 este es el cambio importante
+                reply_to=['contacto@podasytalasisaias.cl'],
             )
             email_admin.attach_alternative(html_admin, "text/html")
             email_admin.send()
