@@ -1,28 +1,18 @@
-# robots.txt para Podas y Talas Isaias
-# Fecha de configuración: 06/11/2025
-
+# robots.txt para Podas y Talas Isaías
 User-agent: *
 Allow: /
-
-# Evita indexar archivos innecesarios o privados
 Disallow: /admin/
 Disallow: /static/
-Disallow: /media/
 
-# Permite indexar imágenes y videos
-Allow: /media/*.jpg$
-Allow: /media/*.jpeg$
-Allow: /media/*.png$
-Allow: /media/*.mp4$
-Allow: /media/*.webp$
+# Permitir imágenes y videos
+Allow: /media/
+Allow: /favicon.ico
 
 # Sitemap principal
 Sitemap: https://podasytalasisaias.cl/sitemap.xml
 
 # Información adicional para Google
 User-agent: Googlebot
-Disallow:
 Allow: /
-
-# Versión móvil preferida
 Host: https://podasytalasisaias.cl
+

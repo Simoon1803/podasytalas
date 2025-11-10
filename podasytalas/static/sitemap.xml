@@ -38,4 +38,11 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- 🌟 Favicon -->
+  <url>
+    <loc>https://podasytalasisaias.cl/favicon.ico</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
