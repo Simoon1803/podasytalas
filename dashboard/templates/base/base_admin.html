@@ -61,69 +61,91 @@
     <p class="mb-1 small">© 2025 Podas y Talas Isaias LTDA — Panel Administrativo</p>
   </footer>
 
-  <!-- 🎨 ESTILOS PERSONALIZADOS -->
-  <style>
-    /* 🌿 NAVBAR con profundidad y elegancia */
-    #adminNavbar {
-      background: linear-gradient(180deg, #0b4726 0%, #145a32 90%);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-      transition: all 0.3s ease;
-      backdrop-filter: blur(6px);
-      border-bottom: 2px solid #ffcc66;
-    }
-    #adminNavbar.scrolled {
-      background: linear-gradient(180deg, #09371e 0%, #124d2b 100%);
-    }
+ <style>
+  /* 🌿 NAVBAR con diseño premium */
+  #adminNavbar {
+    background: linear-gradient(180deg, #0b3e22 0%, #125b34 100%);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 204, 102, 0.25);
+  }
 
-    .nav-link {
-      color: rgba(255,255,255,0.95) !important;
-      position: relative;
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-    .nav-link:hover, .nav-link.active {
-      color: #ffcc66 !important;
-      text-shadow: 0 0 5px rgba(255, 204, 102, 0.7);
-    }
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: #ffcc66;
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
+  #adminNavbar.scrolled {
+    background: linear-gradient(180deg, #09371e 0%, #11482a 100%);
+  }
 
-    /* 🟡 Botón cerrar sesión */
-    .btn-outline-light {
-      border-color: #ffcc66 !important;
-      color: #fff !important;
-      border-width: 2px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-    .btn-outline-light:hover {
-      background-color: #ffcc66 !important;
-      color: #0b4726 !important;
-      box-shadow: 0 0 10px rgba(255, 204, 102, 0.8);
-    }
+  /* ✨ Enlaces del menú */
+  .nav-link {
+    color: rgba(255, 255, 255, 0.92) !important;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+  }
 
-    /* 🌳 FOOTER */
-    footer {
-      background: linear-gradient(180deg, #0b4726 0%, #09371e 100%);
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
-    }
+  /* ✨ Hover suave con subrayado dorado centrado */
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #ffcc66;
+    border-radius: 2px;
+    transition: width 0.35s ease;
+  }
 
-    body {
-      background-color: #f4f7f4;
-      font-family: "Segoe UI", sans-serif;
-    }
-  </style>
+  .nav-link:hover::after {
+    width: 60%;
+  }
+
+  /* 💫 Color dorado uniforme al pasar */
+  .nav-link:hover,
+  .nav-link.active {
+    color: #ffcc66 !important;
+    text-shadow: 0 0 8px rgba(255, 204, 102, 0.7);
+    background: rgba(255, 204, 102, 0.08);
+  }
+
+  /* 🎯 Íconos alineados perfectamente */
+  .nav-link i {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  /* 🟡 Botón cerrar sesión */
+  .btn-outline-light {
+    border-color: #ffcc66 !important;
+    color: #fff !important;
+    border-width: 2px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline-light:hover {
+    background-color: #ffcc66 !important;
+    color: #0b4726 !important;
+    box-shadow: 0 0 12px rgba(255, 204, 102, 0.8);
+    transform: scale(1.05);
+  }
+
+  /* 🌳 FOOTER */
+  footer {
+    background: linear-gradient(180deg, #0b4726 0%, #08341b 100%);
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  body {
+    background-color: #f4f7f4;
+    font-family: "Segoe UI", sans-serif;
+  }
+</style>
 
   <!-- ⚙️ Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
