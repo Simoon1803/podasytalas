@@ -1,5 +1,5 @@
 from django.db import models
-
+from PIL import Image  # 👈 para redimensionar automáticamente
 
 # ---------------------------
 # 🔹 SERVICIOS
@@ -20,11 +20,24 @@ class Service(models.Model):
 
 
 # ---------------------------
-# 🔹 GALERÍA GENERAL
+# 🔹 GALERÍA GENERAL (ACTUALIZADO)
 # ---------------------------
 class GalleryImage(models.Model):
-    title = models.CharField(max_length=200, blank=True, null=True, verbose_name="Título de la imagen")
-    image = models.ImageField(upload_to="gallery/", verbose_name="Imagen")
+    title = models.CharField(
+        max_length=200,
+        blank=True,
+        null=True,
+        verbose_name="Título de la imagen"
+    )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Descripción opcional"
+    )
+    image = models.ImageField(
+        upload_to="gallery/",
+        verbose_name="Imagen"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -35,12 +48,26 @@ class GalleryImage(models.Model):
     def __str__(self):
         return self.title if self.title else f"Imagen {self.id}"
 
+    # ✅ Redimensionamiento automático a 900x650 px
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.image.path)
+
+        # Tamaño deseado (como la imagen que mostraste)
+        max_width, max_height = 900, 650
+
+        # Redimensiona sin deformar
+        img.thumbnail((max_width, max_height))
+        img.save(self.image.path)
+
+
 
 # ---------------------------
 # 🔹 VIDEOS
 # ---------------------------
 class Video(models.Model):
     title = models.CharField(max_length=200, verbose_name="Título del video")
+    description = models.TextField(blank=True, null=True, verbose_name="Descripción opcional")  # 👈 NUEVO
     video_file = models.FileField(upload_to='videos/', verbose_name="Archivo de video")
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -51,7 +78,6 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
-
 
 # ---------------------------
 # 🔹 CONTACTO

@@ -19,10 +19,18 @@
         <div class="card shadow-sm h-100">
           <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.title }}">
           <div class="card-body text-center">
-            <h6 class="fw-semibold">{{ image.title }}</h6>
-            <button class="btn btn-outline-danger btn-sm mt-2" onclick="confirmDelete('{{ image.id }}')">
-              <i class="bi bi-trash"></i> Eliminar
-            </button>
+            <h6 class="fw-semibold">{{ image.title|default:"(Sin título)" }}</h6>
+            {% if image.description %}
+              <p class="text-muted small">{{ image.description|truncatewords:12 }}</p>
+            {% endif %}
+            <div class="d-flex justify-content-center gap-2 mt-2">
+              <a href="{% url 'dashboard:gallery_edit' image.id %}" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-pencil-square"></i> Editar
+              </a>
+              <button class="btn btn-outline-danger btn-sm" onclick="confirmDelete('{{ image.id }}')">
+                <i class="bi bi-trash"></i> Eliminar
+              </button>
+            </div>
           </div>
         </div>
       </div>

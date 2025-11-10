@@ -8,12 +8,29 @@
 <div class="form-container shadow">
   <div class="text-center mb-4">
     <img src="{% static 'img/logo.png' %}" width="100" class="mb-3">
-    <h2 class="fw-bold text-primary"><i class="bi bi-image"></i> Nueva Imagen</h2>
+    <h2 class="fw-bold text-primary">
+      <i class="bi bi-image"></i> {{ title }}
+    </h2>
   </div>
 
   <form id="galleryForm" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Título</label>
+      {{ form.title }}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Descripción (opcional)</label>
+      {{ form.description }}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Imagen</label>
+      {{ form.image }}
+    </div>
+
     <div class="d-flex justify-content-between mt-4">
       <a href="{% url 'dashboard:gallery_list' %}" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Volver

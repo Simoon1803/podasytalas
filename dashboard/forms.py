@@ -29,7 +29,12 @@ class GalleryImageForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Ej: Trabajos realizados en zona norte'
+                'placeholder': 'Ej: Poda en zona urbana'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3,
+                'placeholder': 'Agrega una breve descripción (opcional)...'
             }),
             'image': forms.ClearableFileInput(attrs={
                 'class': 'form-control'
@@ -40,11 +45,16 @@ class GalleryImageForm(forms.ModelForm):
 class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
-        fields = ['title', 'video_file']
+        fields = ['title', 'description', 'video_file']  # 👈 nuevo campo description
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Ej: Presentación de la empresa'
+                'placeholder': 'Ej: Video de tala controlada'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3,
+                'placeholder': 'Agrega una breve descripción del video (opcional)...'
             }),
             'video_file': forms.ClearableFileInput(attrs={
                 'class': 'form-control'

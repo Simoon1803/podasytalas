@@ -80,12 +80,14 @@ def service_delete(request, pk):
 # ----------------------------
 @staff_member_required
 def gallery_list(request):
+    """Lista de imágenes de la galería."""
     gallery = GalleryImage.objects.all().order_by('-created_at')
     return render(request, "dashboard/gallery_list.html", {"gallery": gallery})
 
 
 @staff_member_required
 def gallery_add(request):
+    """Agregar una nueva imagen a la galería."""
     if request.method == "POST":
         form = GalleryImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -93,7 +95,7 @@ def gallery_add(request):
             messages.success(request, "✅ Imagen agregada a la galería correctamente")
             return redirect("dashboard:gallery_list")
         else:
-            messages.error(request, "❌ Error al agregar la imagen")
+            messages.error(request, "❌ Error al agregar la imagen. Revisa los campos e inténtalo nuevamente.")
     else:
         form = GalleryImageForm()
     return render(request, "dashboard/gallery_form.html", {"form": form, "title": "Nueva Imagen"})
@@ -101,6 +103,7 @@ def gallery_add(request):
 
 @staff_member_required
 def gallery_edit(request, pk):
+    """Editar una imagen existente de la galería."""
     image = get_object_or_404(GalleryImage, pk=pk)
     if request.method == "POST":
         form = GalleryImageForm(request.POST, request.FILES, instance=image)
@@ -109,7 +112,7 @@ def gallery_edit(request, pk):
             messages.success(request, "🖼️ Imagen actualizada correctamente")
             return redirect("dashboard:gallery_list")
         else:
-            messages.error(request, "❌ Error al actualizar la imagen")
+            messages.error(request, "❌ Error al actualizar la imagen. Verifica los campos.")
     else:
         form = GalleryImageForm(instance=image)
     return render(request, "dashboard/gallery_form.html", {"form": form, "title": "Editar Imagen"})
@@ -117,11 +120,11 @@ def gallery_edit(request, pk):
 
 @staff_member_required
 def gallery_delete(request, pk):
+    """Eliminar una imagen de la galería."""
     image = get_object_or_404(GalleryImage, pk=pk)
     image.delete()
     messages.success(request, "🗑️ Imagen eliminada correctamente")
     return redirect("dashboard:gallery_list")
-
 
 # ----------------------------
 # 🔹 VIDEOS
