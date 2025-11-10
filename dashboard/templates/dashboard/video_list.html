@@ -7,9 +7,7 @@
 
 <div class="container py-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold text-success">
-      <i class="bi bi-camera-reels"></i> Videos Subidos
-    </h2>
+    <h2 class="fw-bold text-success"><i class="bi bi-camera-reels"></i> Videos Subidos</h2>
     <a href="{% url 'dashboard:video_add' %}" class="btn btn-success">
       <i class="bi bi-plus-circle"></i> Nuevo Video
     </a>
@@ -17,17 +15,18 @@
 
   <div class="row g-4">
     {% for video in videos %}
-      <div class="col-md-4 col-sm-6">
-        <div class="card shadow-sm h-100 border-0 rounded-4">
-          <!-- 🎬 Reproductor de video local -->
-          <video class="card-img-top rounded-top-4" controls style="height: 220px; object-fit: cover;">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card shadow-sm border-0 rounded-4 video-card h-100">
+          <video class="card-img-top rounded-top-4 video-preview" controls preload="metadata">
             <source src="{{ video.video_file.url }}" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
-
           <div class="card-body text-center">
-            <h6 class="fw-semibold text-dark mb-2">{{ video.title }}</h6>
-            <div class="d-flex justify-content-center gap-2">
+            <h6 class="fw-semibold text-dark">{{ video.title }}</h6>
+            {% if video.description %}
+              <p class="text-muted small">{{ video.description|truncatechars:100 }}</p>
+            {% endif %}
+            <div class="d-flex justify-content-center gap-2 mt-2">
               <a href="{% url 'dashboard:video_edit' video.id %}" class="btn btn-outline-primary btn-sm">
                 <i class="bi bi-pencil"></i> Editar
               </a>
@@ -44,12 +43,33 @@
   </div>
 </div>
 
+<style>
+.video-card {
+  transition: all 0.3s ease-in-out;
+}
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.video-preview {
+  width: 100%;
+  height: 240px; /* 🔹 tamaño fijo como galería y servicios */
+  object-fit: cover;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+@media (max-width: 768px) {
+  .video-preview {
+    height: 200px;
+  }
+}
+</style>
+
 <script>
 function confirmDelete(id) {
   Swal.fire({
     html: `
       <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-       
         <h2 style="margin:0;color:#b91c1c;font-size:1.2rem;font-weight:600;">¿Eliminar video?</h2>
         <p style="margin:0;color:#444;font-size:0.9rem;line-height:1.4;text-align:center;">
           Esta acción no se puede deshacer.
@@ -74,7 +94,6 @@ function confirmDelete(id) {
   }).then((result) => {
     if (result.isConfirmed) {
       window.location.href = `/dashboard/videos/delete/${id}/`;
-
     }
   });
 }

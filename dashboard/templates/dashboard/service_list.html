@@ -15,12 +15,14 @@
 
   <div class="row g-4">
     {% for service in services %}
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-          <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card shadow-sm border-0 h-100 service-card">
+          <div class="ratio ratio-4x3">
+            <img src="{{ service.image.url }}" class="card-img-top service-img" alt="{{ service.title }}">
+          </div>
           <div class="card-body">
-            <h5 class="card-title fw-bold">{{ service.title }}</h5>
-            <p class="card-text text-muted">{{ service.description|truncatechars:100 }}</p>
+            <h5 class="fw-bold text-success">{{ service.title }}</h5>
+            <p class="text-muted small">{{ service.description|truncatechars:110 }}</p>
             <div class="d-flex justify-content-between mt-3">
               <a href="{% url 'dashboard:service_edit' service.id %}" class="btn btn-outline-success btn-sm">
                 <i class="bi bi-pencil"></i> Editar
@@ -33,10 +35,32 @@
         </div>
       </div>
     {% empty %}
-      <p class="text-muted">No hay servicios agregados aún.</p>
+      <p class="text-muted text-center">No hay servicios agregados aún.</p>
     {% endfor %}
   </div>
 </div>
+
+<style>
+.service-card {
+  transition: all 0.3s ease-in-out;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.service-img {
+  object-fit: cover;
+  width: 100%;
+  height: 240px; /* 🔹 tamaño fijo igual que galería */
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+@media (max-width: 768px) {
+  .service-img {
+    height: 200px;
+  }
+}
+</style>
 
 <script>
 function confirmDelete(id) {

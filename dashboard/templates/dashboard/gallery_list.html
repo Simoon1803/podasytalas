@@ -15,13 +15,15 @@
 
   <div class="row g-4">
     {% for image in gallery %}
-      <div class="col-md-3 col-sm-6">
-        <div class="card shadow-sm h-100">
-          <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.title }}">
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card shadow-sm border-0 h-100 gallery-card">
+          <div class="ratio ratio-4x3">
+            <img src="{{ image.image.url }}" class="card-img-top gallery-img" alt="{{ image.title }}">
+          </div>
           <div class="card-body text-center">
-            <h6 class="fw-semibold">{{ image.title|default:"(Sin título)" }}</h6>
+            <h6 class="fw-semibold text-success">{{ image.title|default:"(Sin título)" }}</h6>
             {% if image.description %}
-              <p class="text-muted small">{{ image.description|truncatewords:12 }}</p>
+              <p class="text-muted small">{{ image.description|truncatechars:70 }}</p>
             {% endif %}
             <div class="d-flex justify-content-center gap-2 mt-2">
               <a href="{% url 'dashboard:gallery_edit' image.id %}" class="btn btn-outline-primary btn-sm">
@@ -35,10 +37,32 @@
         </div>
       </div>
     {% empty %}
-      <p class="text-muted">Aún no hay imágenes en la galería.</p>
+      <p class="text-muted text-center">Aún no hay imágenes en la galería.</p>
     {% endfor %}
   </div>
 </div>
+
+<style>
+.gallery-card {
+  transition: all 0.3s ease-in-out;
+}
+.gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.gallery-img {
+  object-fit: cover;
+  width: 100%;
+  height: 240px; /* 🔹 tamaño fijo y uniforme */
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+@media (max-width: 768px) {
+  .gallery-img {
+    height: 200px;
+  }
+}
+</style>
 
 <script>
 function confirmDelete(id) {
