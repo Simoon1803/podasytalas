@@ -113,6 +113,7 @@
     </div>
   </div>
 </section>
+
 <!-- 🎥 VIDEOS -->
 <section id="videos" class="py-5 bg-white">
   <div class="container">
@@ -189,9 +190,15 @@
   </div>
 </section>
 
-<!-- ✅ SWEETALERT Y WHATSAPP -->
+<!-- ——————————————————————————————
+     SWEETALERT + GOOGLE ADS CONVERSIÓN
+—————————————————————————————— -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div id="alert-data" data-message="{% for m in messages %}{{ m }}{% endfor %}" data-tag="{% for m in messages %}{{ m.tags }}{% endfor %}" style="display:none;"></div>
+
+<div id="alert-data"
+     data-message="{% for m in messages %}{{ m }}{% endfor %}"
+     data-tag="{% for m in messages %}{{ m.tags }}{% endfor %}"
+     style="display:none;"></div>
 
 <script>
 document.getElementById("confirmButton").addEventListener("click", function() {
@@ -207,9 +214,19 @@ document.getElementById("confirmButton").addEventListener("click", function() {
   }).then((r)=>{ if(r.isConfirmed){ document.getElementById("budgetForm").submit(); }});
 });
 
-const box=document.getElementById("alert-data");
-if(box.dataset.message && box.dataset.tag==="success"){
-  Swal.fire({position:"top-end",icon:"success",title:"Tu solicitud fue enviada con éxito",showConfirmButton:false,timer:1500,toast:true});
+const box = document.getElementById("alert-data");
+if(box.dataset.message && box.dataset.tag === "success"){
+  Swal.fire({
+    position:"top-end",
+    icon:"success",
+    title:"Tu solicitud fue enviada con éxito",
+    showConfirmButton:false,
+    timer:1500,
+    toast:true
+  });
+
+  // 🔥 GOOGLE ADS CONVERSIÓN FORMULARIO
+  conversion_presupuesto();
 }
 
 function showService(title, description, imageUrl) {
@@ -231,120 +248,116 @@ function showService(title, description, imageUrl) {
 }
 </script>
 
-<a href="https://api.whatsapp.com/send?phone=56927652097&text=Hola%20necesito%20una%20cotizaci%C3%B3n%20de%20podas%20y%20talas" class="whatsapp-float" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i></a>
+<a href="https://api.whatsapp.com/send?phone=56927652097&text=Hola%20necesito%20una%20cotizaci%C3%B3n%20de%20podas%20y%20talas"
+   class="whatsapp-float"
+   onclick="conversion_whatsapp()"
+   target="_blank"><i class="bi bi-whatsapp"></i></a>
 
 <!-- 🌈 ESTILOS -->
 <style>
 .hero-section{position:relative;height:95vh;overflow:hidden;}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(1.1) contrast(1.1) saturate(1.3);}
 .hero-overlay{position:relative;z-index:2;background:rgba(0,60,25,0.55);width:100%;height:100%;}
-input,textarea,select{border-radius:10px!important;border:1.5px solid #cce3d0;padding:10px 12px;width:100%;transition:all .3s ease;}
-input:focus,textarea:focus{border-color:#2e7d32;box-shadow:0 0 8px rgba(46,125,50,0.3);}
-.service-card {
-  background: #fff;
-  border-radius: 1rem;
-  overflow: hidden;
-  transition: all .3s ease;
+
+input,textarea,select{
+  border-radius:10px!important;
+  border:1.5px solid #cce3d0;
+  padding:10px 12px;
+  width:100%;
+  transition:all .3s ease;
 }
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-.service-img-wrapper {
-  height: 250px;
-  overflow: hidden;
-}
-.service-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .4s ease;
-}
-.service-card:hover .service-img {
-  transform: scale(1.05);
-}
-/* 🎥 SECCIÓN DE VIDEOS */
-#videos {
-  background-color: #ffffff;
-  padding-top: 4rem;
-  padding-bottom: 5rem;
+input:focus,textarea:focus{
+  border-color:#2e7d32;
+  box-shadow:0 0 8px rgba(46,125,50,0.3);
 }
 
-/* Contenedor de cada tarjeta */
-.video-card-pro {
-  border-radius: 1.3rem;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: all 0.35s ease;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+/* Servicios */
+.service-card{
+  background:#fff;
+  border-radius:1rem;
+  overflow:hidden;
+  transition:.3s;
+}
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+.service-img-wrapper{height:250px;overflow:hidden;}
+.service-img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+.service-card:hover .service-img{transform:scale(1.05);}
+
+/* Videos */
+.video-card-pro{
+  border-radius:1.3rem;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  transition:.35s;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.video-card-pro:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 16px 40px rgba(0,0,0,0.12);
+}
+.video-frame-wrapper{
+  border-radius:1.3rem;
+  overflow:hidden;
+  background:#000;
 }
 
-/* Hover con efecto de elevación */
-.video-card-pro:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+#videos p.fw-semibold{
+  color:#1b5e20;
+  font-size:1rem;
+  margin-top:.8rem;
+  font-weight:600;
+  transition:.3s;
+}
+#videos p.fw-semibold:hover{color:#2e7d32;}
+
+.choose-us-section{
+  background:linear-gradient(180deg,#5a3e2b 0%,#7b5b3d 100%);
+  color:#fff;
+  padding:5rem 0;
+}
+.choose-card{
+  background:rgba(255,255,255,0.08);
+  border-radius:1.5rem;
+  padding:2rem 1.5rem;
+  border:1px solid rgba(255,255,255,0.15);
+  transition:.4s;
+}
+.choose-card:hover{
+  background:rgba(255,255,255,0.18);
+  transform:translateY(-8px);
+}
+.icon-box{
+  font-size:2.8rem;
+  color:#e8c27c;
+  background:rgba(255,255,255,0.1);
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-/* Ajuste de proporción del video */
-.video-card-pro video,
-.video-card-pro iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: none;
-  display: block;
+.whatsapp-float{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background-color:#25D366;
+  color:#fff;
+  font-size:28px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
 }
-
-/* Marco oscuro para los iframes (YouTube u otros) */
-.video-frame-wrapper {
-  border-radius: 1.3rem;
-  overflow: hidden;
-  background: #000;
-}
-
-/* Título de cada video */
-#videos p.fw-semibold {
-  color: #1b5e20;
-  font-size: 1rem;
-  margin-top: 0.8rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  letter-spacing: 0.3px;
-  transition: color 0.3s ease;
-}
-
-#videos p.fw-semibold:hover {
-  color: #2e7d32;
-}
-
-/* Espaciado general */
-#videos .row {
-  row-gap: 2rem;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  #videos .video-card-pro {
-    margin-bottom: 1.5rem;
-  }
-}
-
-@media (max-width: 576px) {
-  #videos p.fw-semibold {
-    font-size: 0.95rem;
-  }
-}
-.choose-us-section{background:linear-gradient(180deg,#5a3e2b 0%,#7b5b3d 100%);color:#fff;position:relative;overflow:hidden;padding-top:5rem;padding-bottom:5rem;}
-.choose-card{background:rgba(255,255,255,0.08);border-radius:1.5rem;padding:2rem 1.5rem;border:1px solid rgba(255,255,255,0.15);transition:all 0.4s ease;color:#fff;}
-.choose-card:hover{background:rgba(255,255,255,0.18);transform:translateY(-8px);box-shadow:0 10px 30px rgba(0,0,0,0.35);}
-.choose-card h5{color:#ffecb3;font-weight:700;}
-.choose-card p{color:#f3f3f3;font-size:0.97rem;}
-.icon-box{font-size:2.8rem;color:#e8c27c;background:rgba(255,255,255,0.1);width:70px;height:70px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;}
-.choose-card:hover .icon-box{background:rgba(255,255,255,0.25);color:#fff4c3;transform:scale(1.1);}
-.whatsapp-float{position:fixed;right:18px;bottom:18px;background-color:#25D366;color:#fff;font-size:28px;width:58px;height:58px;border-radius:50%;box-shadow:0 10px 25px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;z-index:9999;transition:all .2s ease;}
-.whatsapp-float:hover{transform:scale(1.07);}
-@media(max-width:768px){.hero-section{height:80vh}.display-5{font-size:1.8rem}.lead{font-size:1rem}.choose-card{margin-bottom:1rem}}
 </style>
 
 {% endblock %}
