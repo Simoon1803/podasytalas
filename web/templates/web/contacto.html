@@ -4,215 +4,241 @@
 {% block title %}Contacto | Podas y Talas Isaias{% endblock %}
 {% block meta_description %}Contáctanos para cotizar servicios de poda y tala. Atención personalizada vía WhatsApp, teléfono o correo. Trabajamos en toda la Región Metropolitana.{% endblock %}
 
-
 {% block content %}
 
-<!-- 🌿 HERO / PORTADA CON FONDO AJUSTADO -->
-<section class="contact-hero d-flex align-items-center justify-content-center text-center text-white">
+<!-- 🌿 HERO DE CONTACTO -->
+<section class="hero-contacto position-relative d-flex align-items-center justify-content-center text-center text-white pt-5">
   <div class="overlay"></div>
-  <div class="container position-relative">
-    <h1 class="fw-bold display-6 mb-2 animate__animated animate__fadeInDown">
-      <i class="bi bi-telephone-inbound"></i> Contáctanos
+  <div class="container position-relative z-index-3 mt-5 px-3">
+    <span class="badge bg-success rounded-pill px-3 py-2 mb-3 text-uppercase fw-bold shadow-sm" style="letter-spacing: 1px;">Atención 24/7</span>
+    <h1 class="fw-bold display-4 mb-3 font-heading text-shadow-sm">
+      Hablemos de tu <span class="text-accent">Proyecto</span>
     </h1>
-    <p class="lead animate__animated animate__fadeInUp">
-      Estamos en <strong>Melipilla</strong>, listos para ayudarte con podas, talas y mantenimiento de áreas verdes.
+    <p class="lead mb-4 fw-light mx-auto" style="max-width: 650px; opacity: 0.95;">
+      Estamos en <strong>Melipilla</strong> y atendemos en toda la Región Metropolitana. Cotiza con nosotros, es rápido y sin compromiso.
     </p>
   </div>
 </section>
 
-<!-- 📞 INFORMACIÓN DE CONTACTO -->
-<section class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="fw-bold text-success mb-5"><i class="bi bi-chat-dots"></i> Ponte en contacto con nosotros</h2>
+<!-- 📞 TARJETAS DE CONTACTO -->
+<section class="py-6 bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h6 class="text-success fw-bold text-uppercase tracking-wider mb-2">Comunícate con nosotros</h6>
+      <h2 class="fw-bold section-title">Canales de Atención</h2>
+    </div>
+
     <div class="row g-4 justify-content-center">
       
-      <div class="col-md-4">
-        <div class="contact-card shadow-sm p-4 rounded-4 bg-white h-100">
-          <i class="bi bi-geo-alt text-success fs-1 mb-3"></i>
-          <h5 class="fw-bold text-dark">Nuestra dirección</h5>
-          <p class="text-muted mb-0">Melipilla, Región Metropolitana, Chile</p>
+      <!-- Ubicación -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="contact-card shadow-sm p-5 rounded-4 bg-white text-center h-100 d-flex flex-column align-items-center justify-content-center">
+          <div class="icon-wrapper bg-light-success text-success mb-4">
+            <i class="bi bi-geo-alt-fill"></i>
+          </div>
+          <h5 class="fw-bold text-dark font-heading">Ubicación</h5>
+          <p class="text-muted mb-0 mt-2">Melipilla, Región Metropolitana<br>Chile</p>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <div class="contact-card shadow-sm p-4 rounded-4 bg-white h-100">
-          <i class="bi bi-telephone text-success fs-1 mb-3"></i>
-          <h5 class="fw-bold text-dark">Teléfono / WhatsApp</h5>
-          <p class="text-muted mb-1">
-            <a href="https://wa.me/56927652097" target="_blank" class="text-success fw-semibold text-decoration-none">
-              +56 9 2765 2097
-            </a>
-          </p>
-          <a href="https://wa.me/56927652097" target="_blank" class="btn btn-success rounded-pill px-4 mt-2">
-            <i class="bi bi-whatsapp"></i> Enviar mensaje
+      <!-- WhatsApp (Destacado) -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="contact-card contact-card-featured shadow p-5 rounded-4 bg-white text-center h-100 d-flex flex-column align-items-center justify-content-center border-success border">
+          <div class="icon-wrapper bg-success text-white mb-4 shadow-sm">
+            <i class="bi bi-whatsapp"></i>
+          </div>
+          <h5 class="fw-bold text-dark font-heading">WhatsApp Directo</h5>
+          <a href="https://wa.me/56927652097" target="_blank" class="text-success fs-5 fw-bold text-decoration-none mt-2 d-block hover-scale">
+            +56 9 2765 2097
+          </a>
+          <a href="https://wa.me/56927652097" target="_blank" class="btn btn-success rounded-pill px-4 py-2 mt-4 fw-bold shadow-sm w-100">
+            Iniciar Chat Ahora
           </a>
         </div>
       </div>
 
-      <div class="col-md-4">
-        <div class="contact-card shadow-sm p-4 rounded-4 bg-white h-100">
-          <i class="bi bi-envelope text-success fs-1 mb-3"></i>
-          <h5 class="fw-bold text-dark">Correo electrónico</h5>
-          <p class="text-muted mb-0">isaiaspodasytalas@gmail.com</p>
+      <!-- Correo -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="contact-card shadow-sm p-5 rounded-4 bg-white text-center h-100 d-flex flex-column align-items-center justify-content-center">
+          <div class="icon-wrapper bg-light-success text-success mb-4">
+            <i class="bi bi-envelope-paper-fill"></i>
+          </div>
+          <h5 class="fw-bold text-dark font-heading">Correo Electrónico</h5>
+          <a href="mailto:isaiaspodasytalas@gmail.com" class="text-muted text-decoration-none mt-2 hover-text-success">
+            isaiaspodasytalas@gmail.com
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- 🌐 REDES SOCIALES -->
-<section class="py-5 text-center bg-white">
+<!-- 🌐 REDES SOCIALES & MAPA EN UNA MISMA SECCIÓN -->
+<section class="py-6 bg-white border-top">
   <div class="container">
-    <h2 class="fw-bold text-success mb-3">
-      <i class="bi bi-people"></i> Síguenos en nuestras redes
-    </h2>
-    <p class="text-muted mb-4">Conoce nuestros trabajos, proyectos y promociones.</p>
-    
-    <div class="d-flex justify-content-center flex-wrap gap-3">
-      <a href="https://www.facebook.com/isaiaspodasytalas/" target="_blank" class="social-btn fb shadow-sm">
-        <i class="bi bi-facebook"></i> Facebook
-      </a>
-      <a href="https://www.instagram.com/podasytalasisaias?igsh=bW92MWhtb2J1azJ4/" target="_blank" class="social-btn ig shadow-sm">
-        <i class="bi bi-instagram"></i> Instagram
-      </a>
+    <div class="row align-items-center justify-content-center g-5">
       
+      <!-- Lado Izquierdo: Redes Sociales -->
+      <div class="col-lg-5 text-center text-lg-start" data-aos="fade-right">
+        <h6 class="text-success fw-bold text-uppercase tracking-wider mb-2">Comunidad</h6>
+        <h2 class="fw-bold section-title mb-4">Síguenos en Redes</h2>
+        <p class="text-muted lead mb-5">Únete a nuestra comunidad para ver nuestros trabajos en tiempo real, antes y después de proyectos, y consejos sobre el cuidado de árboles.</p>
+        
+        <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+          <a href="https://www.facebook.com/isaiaspodasytalas/" target="_blank" class="social-pill fb shadow-sm">
+            <i class="bi bi-facebook fs-4"></i> <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/podasytalasisaias" target="_blank" class="social-pill ig shadow-sm">
+            <i class="bi bi-instagram fs-4"></i> <span>Instagram</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Lado Derecho: Mapa -->
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="mapa-box shadow rounded-4 overflow-hidden border border-light-subtle">
+          <div class="bg-success text-white px-4 py-2 d-flex align-items-center">
+            <i class="bi bi-geo-alt me-2"></i> <span class="fw-semibold font-heading">Zona de Operaciones Principales</span>
+          </div>
+          <iframe
+            src="https://www.google.com/maps?q=Melipilla,+Chile&output=embed"
+            width="100%" height="350"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- 🗺️ MAPA MÁS COMPACTO -->
-<section class="mapa-contacto py-4 bg-light text-center">
-  <div class="container">
-    <h3 class="fw-bold text-success mb-3">
-      <i class="bi bi-geo-alt"></i> Encuéntranos en Melipilla
-    </h3>
-    <div class="mapa-box mx-auto shadow-sm rounded-4 overflow-hidden">
-      <iframe
-        src="https://www.google.com/maps?q=Melipilla,+Chile&output=embed"
-        width="100%" height="300"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<!-- 🌳 LLAMADO FINAL -->
-<section class="py-5 cta-section text-white text-center">
-  <div class="container">
-    <h2 class="fw-bold mb-3">¿Listo para agendar tu servicio?</h2>
-    <p class="lead mb-4">Contáctanos y recibe atención profesional con compromiso, seguridad y experiencia.</p>
-    <a href="https://wa.me/56927652097" class="btn btn-light btn-lg rounded-pill px-5 fw-bold shadow">
-      <i class="bi bi-whatsapp text-success"></i> Hablar por WhatsApp
+<!-- 🌳 LLAMADO FINAL PREMIUM -->
+<section class="cta-contacto text-white text-center py-6 position-relative">
+  <div class="container position-relative z-index-3" data-aos="zoom-in">
+    <div class="icon-box-large mx-auto mb-4 bg-white text-success"><i class="bi bi-calendar-check"></i></div>
+    <h2 class="fw-bold mb-3 font-heading" style="font-size: 2.5rem;">¿Listo para agendar?</h2>
+    <p class="mb-5 lead opacity-90 mx-auto" style="max-width: 600px;">
+      Garantizamos resultados profesionales con 100% de seguridad para tu propiedad. Atendemos emergencias de forma inmediata.
+    </p>
+    <a href="https://wa.me/56927652097" class="btn btn-light btn-lg fw-bold rounded-pill px-5 py-3 shadow-lg btn-cta-hover text-success">
+      <i class="bi bi-whatsapp me-2"></i> Solicitar Presupuesto
     </a>
   </div>
 </section>
 
-<!-- 🌈 ESTILOS -->
+<!-- 🌈 ESTILOS PREMIUM PARA CONTACTO -->
 <style>
-.contact-hero {
-  position: relative;
-  height: 50vh;
+/* Variables heredadas */
+.py-6 { padding-top: 5rem; padding-bottom: 5rem; }
+.text-accent { color: #ffcc66; }
+.tracking-wider { letter-spacing: 0.1em; }
+.section-title { font-size: 2.5rem; color: #1a202c; font-family: 'Montserrat', sans-serif; }
+.font-heading { font-family: 'Montserrat', sans-serif; }
+.text-shadow-sm { text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+/* --- HERO --- */
+.hero-contacto {
   background: url("{% static 'img/contacto.png' %}") center/cover no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; /* Efecto parallax sutil */
+  min-height: 55vh;
+  position: relative;
+  margin-top: -90px;
 }
-.contact-hero .overlay {
-  position: absolute;
-  inset: 0;
-  /* Degradado: más oscuro abajo, más claro arriba */
-  background: linear-gradient(to bottom, rgba(0, 40, 10, 0.6) 0%, rgba(0, 40, 10, 0.8) 60%, rgba(0, 40, 10, 0.85) 100%);
+.hero-contacto .overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(11,71,38,0.85) 0%, rgba(8,51,26,0.95) 100%);
+  z-index: 1;
 }
-.contact-hero h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #fff;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
-}
-.contact-hero p {
-  font-size: 1.15rem;
-  color: #f8f8f8;
-  max-width: 650px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
-}
+.z-index-3 { z-index: 3; }
 
-/* Efecto al pasar el mouse */
-.contact-hero:hover h1 {
-  transform: scale(1.03);
-  transition: 0.3s ease;
+/* --- TARJETAS DE CONTACTO --- */
+.contact-card {
+  transition: all 0.4s ease;
+  border: 1px solid #f1f5f9;
 }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .contact-hero {
-    height: 40vh;
-    background-position: center;
-  }
-  .contact-hero h1 {
-    font-size: 2rem;
-  }
-  .contact-hero p {
-    font-size: 1rem;
-  }
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
 }
+.contact-card-featured {
+  position: relative;
+  top: -15px; /* Hace que resalte visualmente estando más arriba */
+  border-width: 2px !important;
+}
+.icon-wrapper {
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+.contact-card:hover .icon-wrapper { transform: scale(1.1) rotate(5deg); }
+.bg-light-success { background-color: rgba(25, 135, 84, 0.1); }
+.hover-scale { transition: transform 0.2s ease; display: inline-block; }
+.hover-scale:hover { transform: scale(1.05); }
+.hover-text-success { transition: color 0.2s; }
+.hover-text-success:hover { color: #198754 !important; }
 
-/* ---------- REDES SOCIALES ---------- */
-.social-btn {
-  display: inline-flex;
+/* --- REDES SOCIALES --- */
+.social-pill {
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 10px 22px;
-  border-radius: 40px;
+  padding: 12px 28px;
+  border-radius: 50px;
   text-decoration: none;
   color: #fff;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .fb { background-color: #1877f2; }
 .ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.wa { background-color: #25d366; }
-.social-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+.social-pill:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+  color: #fff;
 }
 
-/* ---------- MAPA ---------- */
-.mapa-contacto {
-  background: #f8f9fa;
-}
+/* --- MAPA --- */
 .mapa-box {
-  width: 70%;
-  max-width: 700px;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 .mapa-box:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
 }
 
-/* ---------- CTA ---------- */
-.cta-section {
-  background: linear-gradient(180deg, #2e7d32, #1b5e20);
-  padding: 80px 20px;
+/* --- CIERRE CTA --- */
+.cta-contacto {
+  background: linear-gradient(135deg, #0b4726 0%, #198754 100%);
+}
+.icon-box-large {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.btn-cta-hover { transition: all 0.3s ease; border: none; }
+.btn-cta-hover:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important; 
+  background-color: #f8fafc;
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 768px) {
-  .contact-hero {
-    height: 55vh;
-  }
-  .mapa-box {
-    width: 90%;
-  }
-  .cta-section h2 {
-    font-size: 1.8rem;
-  }
+/* Responsive fixes */
+@media (max-width: 991px) {
+  .contact-card-featured { top: 0; } /* Quitar el resalte hacia arriba en móviles */
 }
 </style>
+
+<!-- AOS Animations -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true, offset: 50 });
+</script>
 
 {% endblock %}

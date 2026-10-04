@@ -6,144 +6,207 @@
 
 {% block content %}
 
-<!-- 🌿 HERO -->
-<section class="hero-galeria d-flex align-items-center justify-content-center text-center text-white">
+<!-- 🌿 HERO DE GALERÍA -->
+<section class="hero-galeria position-relative d-flex align-items-center justify-content-center text-center text-white pt-5">
   <div class="overlay"></div>
-  <div class="container position-relative">
-    <h1 class="fw-bold display-4 mb-3 animate__animated animate__fadeInDown">
-      <i class="bi bi-collection-play-fill"></i> Galería de Trabajos
+  <div class="container position-relative z-index-3 mt-5">
+    <span class="badge bg-success rounded-pill px-3 py-2 mb-3 text-uppercase fw-bold shadow-sm" style="letter-spacing: 1px;">Portafolio Visual</span>
+    <h1 class="fw-bold display-4 mb-3 font-heading text-shadow-sm">
+      Trabajos en <span class="text-accent">Acción</span>
     </h1>
-    <p class="lead animate__animated animate__fadeInUp text-light">
-      Capturamos la dedicación, seguridad y experiencia que nos representan.
+    <p class="lead mb-4 fw-light mx-auto" style="max-width: 650px; opacity: 0.95;">
+      Explora algunos de nuestros proyectos más recientes. Calidad, seguridad y maquinaria especializada en cada intervención.
     </p>
-    <div class="divider mx-auto mt-4"></div>
   </div>
 </section>
 
-<!-- 🖼️ GALERÍA -->
-<section class="py-5 bg-light">
+<!-- 🖼️ GALERÍA DE PORTAFOLIO -->
+<section class="py-6 bg-light">
   <div class="container" data-aos="fade-up">
-    <h2 class="fw-bold text-success text-center mb-5">
-      <i class="bi bi-camera-reels"></i> Nuestros Trabajos en Acción
-    </h2>
+    <div class="text-center mb-5">
+      <h6 class="text-success fw-bold text-uppercase tracking-wider">Nuestro Trabajo</h6>
+      <h2 class="fw-bold section-title">Resultados Impecables</h2>
+    </div>
 
     {% if combined %}
       <div class="gallery-grid">
         {% for item in combined %}
-          <div class="gallery-card" data-aos="zoom-in">
-            {% if item.type == "image" %}
-              <img src="{{ item.file.image.url }}" alt="{{ item.file.title }}" class="gallery-media">
-            {% else %}
-              <video class="gallery-media" controls playsinline preload="metadata">
-                <source src="{{ item.file.video_file.url }}" type="video/mp4">
-                Tu navegador no soporta videos HTML5.
-              </video>
-            {% endif %}
+          <div class="gallery-card shadow-sm" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:'1' }}0">
             
-            <div class="gallery-info">
-              <h5 class="fw-bold mb-1 text-success">
-                {% if item.type == "video" %}
-                  <i class="bi bi-camera-video-fill text-warning"></i>
-                {% else %}
-                  <i class="bi bi-image-fill text-warning"></i>
-                {% endif %}
-                {{ item.file.title|default:"Trabajo realizado" }}
-              </h5>
-              {% if item.file.description %}
-                <p class="text-muted small mb-0">{{ item.file.description }}</p>
+            <div class="media-wrapper position-relative">
+              {% if item.type == "image" %}
+                <img src="{{ item.file.image.url }}" alt="{{ item.file.title }}" class="gallery-media" loading="lazy">
+                <div class="media-type-icon"><i class="bi bi-camera text-white"></i></div>
               {% else %}
-                <p class="text-muted small mb-0 fst-italic">Sin descripción disponible</p>
+                <video class="gallery-media" controls playsinline preload="metadata">
+                  <source src="{{ item.file.video_file.url }}" type="video/mp4">
+                  Tu navegador no soporta videos HTML5.
+                </video>
+                <!-- Ocultamos el ícono si es video porque ya tiene controles, pero dejamos un borde verde arriba -->
               {% endif %}
             </div>
+            
+            <div class="gallery-info p-4 d-flex flex-column justify-content-between h-100">
+              <div>
+                <h5 class="fw-bold mb-2 text-dark font-heading text-capitalize">
+                  {{ item.file.title|default:"Trabajo realizado" }}
+                </h5>
+                {% if item.file.description %}
+                  <p class="text-muted small mb-0">{{ item.file.description }}</p>
+                {% else %}
+                  <p class="text-muted small mb-0 fst-italic opacity-50">Sin descripción disponible</p>
+                {% endif %}
+              </div>
+            </div>
+
           </div>
         {% endfor %}
       </div>
     {% else %}
-      <p class="text-center text-muted mt-4">🌿 Aún no se han agregado imágenes o videos a la galería.</p>
+      <div class="text-center py-5">
+        <div class="display-1 text-muted opacity-25 mb-3"><i class="bi bi-images"></i></div>
+        <p class="text-muted lead">🌿 Aún no se han agregado imágenes o videos a la galería.</p>
+      </div>
     {% endif %}
   </div>
 </section>
 
-<!-- 🌾 CIERRE -->
-<section class="text-center py-5 bg-success text-white position-relative">
-  <div class="container" data-aos="zoom-in">
-    <h3 class="fw-bold mb-3">Más de una década cuidando tus árboles con compromiso y seguridad</h3>
-    <p class="mb-0">🌳 Podas y Talas Isaías — Excelencia y profesionalismo en cada trabajo 🌿</p>
+<!-- 🌾 CIERRE PREMIUM -->
+<section class="cta-galeria text-center py-6 text-white position-relative">
+  <div class="container position-relative z-index-3" data-aos="zoom-in">
+    <div class="icon-box-large mx-auto mb-4"><i class="bi bi-shield-check"></i></div>
+    <h2 class="fw-bold mb-3 font-heading text-shadow-sm" style="font-size: 2.2rem;">
+      ¿Necesitas un servicio similar?
+    </h2>
+    <p class="mb-4 lead fw-light opacity-75">
+      Contamos con el equipo y la experiencia para resolver desde podas estéticas hasta talas de alta complejidad.
+    </p>
+    <a href="{% url 'web:contacto' %}" class="btn btn-success btn-lg fw-bold rounded-pill px-5 py-3 shadow-lg btn-cta-hover">
+      <i class="bi bi-whatsapp me-2"></i> Habla con un Experto
+    </a>
   </div>
 </section>
 
-<!-- 🌈 ESTILOS -->
+<!-- 🌈 ESTILOS PREMIUM PARA GALERÍA -->
 <style>
-/* HERO */
+/* Reset y variables base heredadas de base.html */
+.py-6 { padding-top: 5rem; padding-bottom: 5rem; }
+.text-accent { color: #ffcc66; }
+.tracking-wider { letter-spacing: 0.1em; }
+.section-title { font-size: 2.5rem; color: #1a202c; font-family: 'Montserrat', sans-serif; }
+.font-heading { font-family: 'Montserrat', sans-serif; }
+.text-shadow-sm { text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+/* --- HERO DE GALERÍA --- */
 .hero-galeria {
   background: url("{% static 'img/galeria.png' %}") center/cover no-repeat;
-  min-height: 70vh;
+  min-height: 50vh;
   position: relative;
+  margin-top: -90px; /* Para meterse debajo del navbar transparente */
 }
 .hero-galeria .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 70, 35, 0.6);
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(11,71,38,0.85) 0%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
 }
-.hero-galeria h1, .hero-galeria p { color: #fff; }
-.divider {
-  width: 90px;
-  height: 4px;
-  background: #ffc107;
-  border-radius: 2px;
-}
+.z-index-3 { z-index: 3; }
 
-/* 🎥 NUEVA GALERÍA */
+/* --- GALERÍA GRID PREMIUM --- */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 30px;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
 }
+
 .gallery-card {
   background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
   overflow: hidden;
-  transition: all 0.4s ease;
+  border: 1px solid #f1f5f9;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
 }
 .gallery-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
 }
+
+.media-wrapper {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  background-color: #000; /* Fondo negro por si el video no llena el espacio */
+}
+
 .gallery-media {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: cover; /* Asegura que no se deformen las imágenes */
+  transition: transform 0.6s ease;
   display: block;
 }
-.gallery-info {
-  padding: 15px 20px;
-  text-align: left;
-  background: #fff;
-  border-top: 3px solid #198754;
+.gallery-card:hover img.gallery-media {
+  transform: scale(1.05); /* Zoom sutil solo a imágenes, no videos */
 }
-.gallery-info h5 {
-  font-size: 1.05rem;
-  color: #0b4726;
+
+/* Ícono de foto en la esquina */
+.media-type-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  pointer-events: none;
 }
-.gallery-info p {
-  font-size: 0.9rem;
-  color: #555;
-  margin-top: 5px;
+
+.gallery-info {
+  background: #fff;
+  /* Línea decorativa verde arriba del texto */
+  border-top: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.gallery-card:hover .gallery-info {
+  border-top-color: #198754;
+}
+
+/* --- CIERRE CTA PREMIUM --- */
+.cta-galeria {
+  background: linear-gradient(135deg, #0b4726 0%, #112d1b 100%);
+  border-top: 5px solid #ffcc66;
+}
+.icon-box-large {
+  width: 80px; height: 80px;
+  background: rgba(255, 204, 102, 0.15);
+  color: #ffcc66;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+}
+
+.btn-cta-hover {
+  background-color: #198754;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-cta-hover:hover {
+  background-color: #146c43;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(25,135,84,0.4) !important;
 }
 
 /* Responsive */
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .gallery-media {
-    height: 230px;
+    grid-template-columns: 1fr; /* Una columna en celulares */
+    gap: 1.5rem;
   }
 }
 </style>
@@ -152,7 +215,7 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-AOS.init({ duration: 1000, once: true });
+  AOS.init({ duration: 800, once: true, offset: 50 });
 </script>
 
 {% endblock %}
