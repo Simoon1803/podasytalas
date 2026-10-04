@@ -6,15 +6,18 @@
 
 {% block content %}
 
-<!-- 🌿 HERO DE CONTACTO -->
-<section class="hero-contacto position-relative d-flex align-items-center justify-content-center text-center text-white pt-5">
+<!-- 🌿 HERO DE CONTACTO (Solucionado) -->
+<section class="hero-contacto position-relative d-flex align-items-center justify-content-center text-center text-white">
   <div class="overlay"></div>
-  <div class="container position-relative z-index-3 mt-5 px-3">
-    <span class="badge bg-success rounded-pill px-3 py-2 mb-3 text-uppercase fw-bold shadow-sm" style="letter-spacing: 1px;">Atención 24/7</span>
-    <h1 class="fw-bold display-4 mb-3 font-heading text-shadow-sm">
+  
+  <div class="container position-relative z-index-3 hero-content px-3">
+    <span class="badge bg-success rounded-pill px-4 py-2 mb-4 text-uppercase fw-bold shadow" style="letter-spacing: 2px; font-size: 0.85rem;">Atención 24/7</span>
+    
+    <h1 class="fw-bold display-3 mb-3 font-heading text-shadow-sm animate__animated animate__fadeInDown">
       Hablemos de tu <span class="text-accent">Proyecto</span>
     </h1>
-    <p class="lead mb-4 fw-light mx-auto" style="max-width: 650px; opacity: 0.95;">
+    
+    <p class="lead mb-0 fw-light mx-auto animate__animated animate__fadeInUp" style="max-width: 700px; opacity: 0.95; font-size: 1.2rem;">
       Estamos en <strong>Melipilla</strong> y atendemos en toda la Región Metropolitana. Cotiza con nosotros, es rápido y sin compromiso.
     </p>
   </div>
@@ -23,9 +26,10 @@
 <!-- 📞 TARJETAS DE CONTACTO -->
 <section class="py-6 bg-light">
   <div class="container">
-    <div class="text-center mb-5" data-aos="fade-up">
+    <div class="text-center mb-5 pb-3" data-aos="fade-up">
       <h6 class="text-success fw-bold text-uppercase tracking-wider mb-2">Comunícate con nosotros</h6>
-      <h2 class="fw-bold section-title">Canales de Atención</h2>
+      <h2 class="fw-bold section-title text-dark">Canales de Atención</h2>
+      <div class="divider mx-auto mt-3"></div>
     </div>
 
     <div class="row g-4 justify-content-center">
@@ -33,25 +37,21 @@
       <!-- Ubicación -->
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="contact-card shadow-sm p-5 rounded-4 bg-white text-center h-100 d-flex flex-column align-items-center justify-content-center">
-          <div class="icon-wrapper bg-light-success text-success mb-4">
-            <i class="bi bi-geo-alt-fill"></i>
-          </div>
+          <div class="icon-wrapper bg-light-success text-success mb-4"><i class="bi bi-geo-alt-fill"></i></div>
           <h5 class="fw-bold text-dark font-heading">Ubicación</h5>
-          <p class="text-muted mb-0 mt-2">Melipilla, Región Metropolitana<br>Chile</p>
+          <p class="text-muted mb-0 mt-2" style="font-size: 1.1rem;">Melipilla, Región Metropolitana<br>Chile</p>
         </div>
       </div>
 
       <!-- WhatsApp (Destacado) -->
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
         <div class="contact-card contact-card-featured shadow p-5 rounded-4 bg-white text-center h-100 d-flex flex-column align-items-center justify-content-center border-success border">
-          <div class="icon-wrapper bg-success text-white mb-4 shadow-sm">
-            <i class="bi bi-whatsapp"></i>
-          </div>
+          <div class="icon-wrapper bg-success text-white mb-4 shadow"><i class="bi bi-whatsapp"></i></div>
           <h5 class="fw-bold text-dark font-heading">WhatsApp Directo</h5>
-          <a href="https://wa.me/56927652097" target="_blank" class="text-success fs-5 fw-bold text-decoration-none mt-2 d-block hover-scale">
+          <a href="https://wa.me/56927652097" target="_blank" class="text-success fs-4 fw-bold text-decoration-none mt-2 d-block hover-scale">
             +56 9 2765 2097
           </a>
-          <a href="https://wa.me/56927652097" target="_blank" class="btn btn-success rounded-pill px-4 py-2 mt-4 fw-bold shadow-sm w-100">
+          <a href="https://wa.me/56927652097" target="_blank" class="btn btn-success rounded-pill px-4 py-3 mt-4 fw-bold shadow-sm w-100 fs-6">
             Iniciar Chat Ahora
           </a>
         </div>
@@ -60,11 +60,9 @@
       <!-- Correo -->
       <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
         <div class="contact-card shadow-sm p-5 rounded-4 bg-white text-center h-100 d-flex flex-column align-items-center justify-content-center">
-          <div class="icon-wrapper bg-light-success text-success mb-4">
-            <i class="bi bi-envelope-paper-fill"></i>
-          </div>
+          <div class="icon-wrapper bg-light-success text-success mb-4"><i class="bi bi-envelope-paper-fill"></i></div>
           <h5 class="fw-bold text-dark font-heading">Correo Electrónico</h5>
-          <a href="mailto:isaiaspodasytalas@gmail.com" class="text-muted text-decoration-none mt-2 hover-text-success">
+          <a href="mailto:isaiaspodasytalas@gmail.com" class="text-muted text-decoration-none mt-2 hover-text-success" style="font-size: 1.1rem; word-break: break-all;">
             isaiaspodasytalas@gmail.com
           </a>
         </div>
@@ -74,18 +72,18 @@
   </div>
 </section>
 
-<!-- 🌐 REDES SOCIALES & MAPA EN UNA MISMA SECCIÓN -->
+<!-- 🌐 REDES SOCIALES & MAPA -->
 <section class="py-6 bg-white border-top">
   <div class="container">
     <div class="row align-items-center justify-content-center g-5">
       
-      <!-- Lado Izquierdo: Redes Sociales -->
+      <!-- Izquierda: Redes Sociales -->
       <div class="col-lg-5 text-center text-lg-start" data-aos="fade-right">
         <h6 class="text-success fw-bold text-uppercase tracking-wider mb-2">Comunidad</h6>
-        <h2 class="fw-bold section-title mb-4">Síguenos en Redes</h2>
-        <p class="text-muted lead mb-5">Únete a nuestra comunidad para ver nuestros trabajos en tiempo real, antes y después de proyectos, y consejos sobre el cuidado de árboles.</p>
+        <h2 class="fw-bold section-title mb-4 text-dark">Síguenos en Redes</h2>
+        <p class="text-muted lead mb-5" style="line-height: 1.8;">Únete a nuestra comunidad para ver nuestros trabajos en tiempo real, antes y después de proyectos, y consejos sobre el cuidado de árboles.</p>
         
-        <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+        <div class="d-flex justify-content-center justify-content-lg-start gap-4">
           <a href="https://www.facebook.com/isaiaspodasytalas/" target="_blank" class="social-pill fb shadow-sm">
             <i class="bi bi-facebook fs-4"></i> <span>Facebook</span>
           </a>
@@ -95,15 +93,15 @@
         </div>
       </div>
 
-      <!-- Lado Derecho: Mapa -->
+      <!-- Derecha: Mapa -->
       <div class="col-lg-7" data-aos="fade-left">
-        <div class="mapa-box shadow rounded-4 overflow-hidden border border-light-subtle">
-          <div class="bg-success text-white px-4 py-2 d-flex align-items-center">
-            <i class="bi bi-geo-alt me-2"></i> <span class="fw-semibold font-heading">Zona de Operaciones Principales</span>
+        <div class="mapa-box shadow-lg rounded-4 overflow-hidden border border-light">
+          <div class="bg-success text-white px-4 py-3 d-flex align-items-center">
+            <i class="bi bi-geo-alt fs-5 me-2"></i> <span class="fw-bold font-heading fs-5">Zona de Operaciones Principales</span>
           </div>
           <iframe
             src="https://www.google.com/maps?q=Melipilla,+Chile&output=embed"
-            width="100%" height="350"
+            width="100%" height="400"
             style="border:0;"
             allowfullscreen=""
             loading="lazy">
@@ -115,66 +113,39 @@
   </div>
 </section>
 
-<!-- 🌳 LLAMADO FINAL PREMIUM -->
-<section class="cta-contacto text-white text-center py-6 position-relative">
-  <div class="container position-relative z-index-3" data-aos="zoom-in">
-    <div class="icon-box-large mx-auto mb-4 bg-white text-success"><i class="bi bi-calendar-check"></i></div>
-    <h2 class="fw-bold mb-3 font-heading" style="font-size: 2.5rem;">¿Listo para agendar?</h2>
-    <p class="mb-5 lead opacity-90 mx-auto" style="max-width: 600px;">
-      Garantizamos resultados profesionales con 100% de seguridad para tu propiedad. Atendemos emergencias de forma inmediata.
-    </p>
-    <a href="https://wa.me/56927652097" class="btn btn-light btn-lg fw-bold rounded-pill px-5 py-3 shadow-lg btn-cta-hover text-success">
-      <i class="bi bi-whatsapp me-2"></i> Solicitar Presupuesto
-    </a>
-  </div>
-</section>
-
 <!-- 🌈 ESTILOS PREMIUM PARA CONTACTO -->
 <style>
-/* Variables heredadas */
-.py-6 { padding-top: 5rem; padding-bottom: 5rem; }
+.py-6 { padding-top: 5.5rem; padding-bottom: 5.5rem; }
 .text-accent { color: #ffcc66; }
-.tracking-wider { letter-spacing: 0.1em; }
-.section-title { font-size: 2.5rem; color: #1a202c; font-family: 'Montserrat', sans-serif; }
+.tracking-wider { letter-spacing: 0.15em; }
+.section-title { font-size: 2.5rem; font-family: 'Montserrat', sans-serif; }
 .font-heading { font-family: 'Montserrat', sans-serif; }
-.text-shadow-sm { text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.text-shadow-sm { text-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+.divider { width: 60px; height: 4px; background: #198754; border-radius: 2px; }
 
 /* --- HERO --- */
 .hero-contacto {
   background: url("{% static 'img/contacto.png' %}") center/cover no-repeat;
-  background-attachment: fixed; /* Efecto parallax sutil */
-  min-height: 55vh;
+  background-attachment: fixed;
+  min-height: 60vh;
   position: relative;
-  margin-top: -90px;
 }
 .hero-contacto .overlay {
   position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(11,71,38,0.85) 0%, rgba(8,51,26,0.95) 100%);
   z-index: 1;
 }
+.hero-content {
+  padding-top: 140px; 
+  padding-bottom: 70px;
+}
 .z-index-3 { z-index: 3; }
 
-/* --- TARJETAS DE CONTACTO --- */
-.contact-card {
-  transition: all 0.4s ease;
-  border: 1px solid #f1f5f9;
-}
-.contact-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
-}
-.contact-card-featured {
-  position: relative;
-  top: -15px; /* Hace que resalte visualmente estando más arriba */
-  border-width: 2px !important;
-}
-.icon-wrapper {
-  width: 70px; height: 70px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.8rem;
-  transition: transform 0.3s ease;
-}
+/* --- TARJETAS --- */
+.contact-card { transition: all 0.4s ease; border: 1px solid #f1f5f9; }
+.contact-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.1) !important; }
+.contact-card-featured { position: relative; top: -15px; border-width: 2px !important; }
+.icon-wrapper { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; transition: transform 0.4s ease; }
 .contact-card:hover .icon-wrapper { transform: scale(1.1) rotate(5deg); }
 .bg-light-success { background-color: rgba(25, 135, 84, 0.1); }
 .hover-scale { transition: transform 0.2s ease; display: inline-block; }
@@ -183,62 +154,21 @@
 .hover-text-success:hover { color: #198754 !important; }
 
 /* --- REDES SOCIALES --- */
-.social-pill {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  color: #fff;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
+.social-pill { display: flex; align-items: center; gap: 12px; font-weight: 600; padding: 14px 30px; border-radius: 50px; text-decoration: none; color: #fff; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-size: 1.1rem; }
 .fb { background-color: #1877f2; }
 .ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-.social-pill:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
-  color: #fff;
-}
+.social-pill:hover { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important; color: #fff; }
 
 /* --- MAPA --- */
-.mapa-box {
-  transition: all 0.4s ease;
-}
-.mapa-box:hover {
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
-}
+.mapa-box { transition: all 0.4s ease; }
+.mapa-box:hover { box-shadow: 0 20px 45px rgba(0,0,0,0.15) !important; transform: translateY(-5px); }
 
-/* --- CIERRE CTA --- */
-.cta-contacto {
-  background: linear-gradient(135deg, #0b4726 0%, #198754 100%);
-}
-.icon-box-large {
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.5rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-.btn-cta-hover { transition: all 0.3s ease; border: none; }
-.btn-cta-hover:hover { 
-  transform: translateY(-3px); 
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important; 
-  background-color: #f8fafc;
-}
-
-/* Responsive fixes */
-@media (max-width: 991px) {
-  .contact-card-featured { top: 0; } /* Quitar el resalte hacia arriba en móviles */
-}
+@media (max-width: 991px) { .contact-card-featured { top: 0; } }
+@media (max-width: 768px) { .hero-content { padding-top: 120px; } .hero-contacto h1 { font-size: 2.5rem; } }
 </style>
 
-<!-- AOS Animations -->
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 800, once: true, offset: 50 });
-</script>
+<script>AOS.init({ duration: 800, once: true, offset: 50 });</script>
 
 {% endblock %}
