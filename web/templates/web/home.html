@@ -13,7 +13,7 @@
 
 {% block content %}
 
-<!-- 🌿 SECCIÓN HERO (Video + Formulario Integrado) -->
+<!-- 🌿 SECCIÓN HERO (Arreglada: Sin superposición con el Navbar) -->
 <section class="hero-section position-relative d-flex align-items-center">
   <video autoplay muted loop playsinline class="hero-video">
     <source src="{% static 'videos/1000419971.mp4' %}" type="video/mp4">
@@ -21,7 +21,8 @@
 
   <div class="hero-overlay"></div>
 
-  <div class="container position-relative z-index-3 pt-5">
+  <!-- Agregamos pt-5 y mt-5 para empujar el contenido debajo del menú -->
+  <div class="container position-relative z-index-3 hero-content">
     <div class="row align-items-center justify-content-between">
       
       <!-- Textos Hero -->
@@ -38,41 +39,33 @@
         </div>
       </div>
 
-      <!-- Formulario Flotante Glassmorphism -->
+      <!-- Formulario Glassmorphism (Arreglado: Etiquetas tradicionales, compatible con Django) -->
       <div class="col-lg-5 animate__animated animate__fadeInRight" data-aos-delay="200">
-        <div class="glass-card p-4 p-md-5">
-          <h3 class="fw-bold text-center mb-4 text-dark"><i class="bi bi-clipboard-check text-success"></i> Cotiza en minutos</h3>
-          <p class="text-center text-muted small mb-4">Déjanos tus datos y te contactaremos a la brevedad con un presupuesto detallado.</p>
+        <div class="glass-card p-4 p-md-5 mx-auto" style="max-width: 500px;">
+          <h3 class="fw-bold text-center mb-2 text-dark"><i class="bi bi-clipboard-check text-success me-2"></i>Cotiza en minutos</h3>
+          <p class="text-center text-muted small mb-4">Te contactaremos a la brevedad con tu presupuesto.</p>
           
           <form method="POST" enctype="multipart/form-data" id="budgetForm">
             {% csrf_token %}
             <div class="row g-3">
               <div class="col-12">
-                <div class="form-floating input-premium">
-                  {{ form.name }}
-                  <label for="id_name"><i class="bi bi-person me-2"></i>Nombre completo</label>
-                </div>
+                <label class="form-label fw-semibold text-dark small mb-1"><i class="bi bi-person text-success me-1"></i> Nombre completo</label>
+                {{ form.name }}
               </div>
               <div class="col-md-6">
-                <div class="form-floating input-premium">
-                  {{ form.phone }}
-                  <label for="id_phone"><i class="bi bi-telephone me-2"></i>Teléfono</label>
-                </div>
+                <label class="form-label fw-semibold text-dark small mb-1"><i class="bi bi-telephone text-success me-1"></i> Teléfono</label>
+                {{ form.phone }}
               </div>
               <div class="col-md-6">
-                <div class="form-floating input-premium">
-                  {{ form.comuna }}
-                  <label for="id_comuna"><i class="bi bi-geo-alt me-2"></i>Comuna</label>
-                </div>
+                <label class="form-label fw-semibold text-dark small mb-1"><i class="bi bi-geo-alt text-success me-1"></i> Comuna</label>
+                {{ form.comuna }}
               </div>
               <div class="col-12">
-                <div class="form-floating input-premium">
-                  {{ form.description }}
-                  <label for="id_description"><i class="bi bi-chat-left-text me-2"></i>¿Qué necesitas?</label>
-                </div>
+                <label class="form-label fw-semibold text-dark small mb-1"><i class="bi bi-chat-left-text text-success me-1"></i> ¿Qué necesitas?</label>
+                {{ form.description }}
               </div>
               <div class="col-12">
-                <label class="form-label fw-semibold small text-muted"><i class="bi bi-image"></i> Subir foto del árbol (opcional)</label>
+                <label class="form-label fw-semibold text-dark small mb-1"><i class="bi bi-image text-success me-1"></i> Subir foto del árbol (opcional)</label>
                 {{ form.image }}
               </div>
               <div class="col-12 mt-4">
@@ -226,7 +219,6 @@
      style="display:none;"></div>
 
 <script>
-// Confirmación del formulario con un diseño de alerta premium
 document.getElementById("confirmButton").addEventListener("click", function() {
   Swal.fire({
     title: '<h3 class="fw-bold text-dark mb-0">¿Enviar Cotización?</h3>',
@@ -245,7 +237,6 @@ document.getElementById("confirmButton").addEventListener("click", function() {
   }).then((r)=>{ if(r.isConfirmed){ document.getElementById("budgetForm").submit(); }});
 });
 
-// Alerta de éxito
 const box = document.getElementById("alert-data");
 if(box.dataset.message && box.dataset.tag === "success"){
   Swal.fire({
@@ -257,11 +248,9 @@ if(box.dataset.message && box.dataset.tag === "success"){
     timer:3000,
     toast:true
   });
-  // GOOGLE ADS CONVERSIÓN FORMULARIO
   if(typeof conversion_presupuesto === "function") { conversion_presupuesto(); }
 }
 
-// Modal de detalle de servicio
 function showService(title, description, imageUrl) {
   Swal.fire({
     html: `
@@ -296,7 +285,7 @@ body { font-family: 'Inter', sans-serif; color: #4a5568; }
 h1, h2, h3, h4, h5, h6, .navbar-brand, .btn { font-family: 'Montserrat', sans-serif; }
 
 .py-6 { padding-top: 5rem; padding-bottom: 5rem; }
-.text-accent { color: #ffcc66; } /* Amarillo dorado para contrastar con verdes */
+.text-accent { color: #ffcc66; } 
 .text-light-50 { color: rgba(255,255,255,0.7); }
 .tracking-wider { letter-spacing: 0.1em; }
 .section-title { font-size: 2.5rem; color: #1a202c; }
@@ -304,51 +293,67 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn { font-family: 'Montserrat', sans-se
 /* --- HERO SECTION --- */
 .hero-section {
   min-height: 100vh;
+  position: relative;
   overflow: hidden;
-  margin-top: -90px; /* Sube la sección para meterse debajo del navbar transparente */
-  padding-top: 90px;
 }
 .hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  /* Gradiente oscuro para asegurar lectura, más oscuro a la derecha para el formulario */
-  background: linear-gradient(90deg, rgba(11,71,38,0.7) 0%, rgba(0,0,0,0.85) 100%);
+  background: linear-gradient(90deg, rgba(11,71,38,0.75) 0%, rgba(0,0,0,0.85) 100%);
   z-index: 1;
+}
+
+/* AQUÍ EMPUJAMOS EL CONTENIDO PARA QUE EL MENÚ NO LO TAPE */
+.hero-content {
+  padding-top: 130px; 
+  padding-bottom: 60px;
 }
 .z-index-3 { z-index: 3; }
 
-.hero-title { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-.hero-subtitle { font-size: 1.15rem; font-weight: 300; opacity: 0.9; max-width: 90%; }
+.hero-title { font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: 1.2; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.hero-subtitle { font-size: 1.15rem; font-weight: 300; opacity: 0.95; max-width: 90%; }
 
 /* Glassmorphism Formulario */
 .glass-card {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Inputs de Django Form adaptados a Bootstrap Floating Labels */
-.input-premium input, .input-premium select, .input-premium textarea {
-  border: 1px solid #e2e8f0;
-  border-radius: 12px !important;
-  background-color: #f8fafc;
-  height: 58px; /* Altura para floating label */
-  padding: 1rem 0.75rem;
+/* Asegurar que los inputs de Django se vean impecables */
+.glass-card input, .glass-card select, .glass-card textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
 }
-.input-premium textarea { height: 100px; }
-.input-premium input:focus, .input-premium select:focus, .input-premium textarea:focus {
+.glass-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.glass-card input:focus, .glass-card select:focus, .glass-card textarea:focus {
   border-color: #198754;
-  box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1);
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2);
+  outline: none;
   background-color: #fff;
 }
-.input-premium label { color: #64748b; font-size: 0.9rem; }
-.btn-premium { height: 56px; font-size: 1.1rem; transition: all 0.3s; }
-.btn-premium:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(25, 135, 84, 0.3) !important; }
+/* Arreglo para el input type file (subir foto) */
+.glass-card input[type="file"] {
+  background-color: transparent;
+  padding: 8px 0;
+  border: none;
+}
+
+.btn-premium { height: 50px; font-size: 1.1rem; transition: all 0.3s; }
+.btn-premium:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(25, 135, 84, 0.3) !important; }
 
 /* --- SERVICIOS --- */
 .service-card {
@@ -374,7 +379,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn { font-family: 'Montserrat', sans-se
 
 .btn-hover-fill {
   transition: all 0.3s ease;
-  background-size: 200% auto;
 }
 .btn-hover-fill:hover {
   background-color: #198754;
@@ -384,7 +388,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn { font-family: 'Montserrat', sans-se
 /* --- POR QUÉ ELEGIRNOS --- */
 .choose-us-section {
   background: linear-gradient(135deg, #0b4726 0%, #112d1b 100%);
-  position: relative;
 }
 .choose-card {
   background: rgba(255, 255, 255, 0.03);
@@ -396,7 +399,7 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn { font-family: 'Montserrat', sans-se
 .choose-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); }
 .choose-card .icon-box {
   width: 70px; height: 70px;
-  background: rgba(255, 204, 102, 0.1); /* Tono del amarillo text-accent */
+  background: rgba(255, 204, 102, 0.1); 
   color: #ffcc66;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -423,7 +426,6 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn { font-family: 'Montserrat', sans-se
 .whatsapp-float:hover {
   color: white;
   transform: scale(1.1) rotate(-10deg);
-  box-shadow: 0 15px 30px rgba(37,211,102,0.6);
 }
 </style>
 
